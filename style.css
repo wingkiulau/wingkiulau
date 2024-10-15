@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tahoma', 'sans-serif';
+}
+
+body {
+    background-color: #bd8e6b; 
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+    padding: 10px;
+    background-color: rgba(159, 122, 73, 0.7);
+}
+
+h1 {
+    padding: 4px;
+    font-size: 3em;
+    font-family: 'Avantgarde', 'Gothic L', 'Tahoma', 'sans-serif';
+    color: #556B2F;
+}
+
+.no-underline, a {
+    text-decoration: none;
+    color: #556B2F;
+}
+
+.nav-bar {
+    margin-left: auto; /* Push the navbar to the right */
+    height: 80px;
+    color: #8B4513;
+}
+
+.nav-bar ul {
+    list-style: none; 
+    display: flex; 
+}
+
+.nav-bar li {
+    margin-right: 5px;  
+}
+
+.nav-bar a {
+    text-decoration: none; /* Remove underline */
+    color: #556B2F;
+    padding: 5px; /* Padding for links */
+}
+
+.nav-bar a:hover {
+    color: #fff99e; 
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #556B2F;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color:#ed7d21;
+}
+
+.dropdown-content a:hover {
+    background-color:#eaa165;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+h2, .about-tab .tab-links {
+    padding: 10px;
+    margin: 10px 0 0 0; /* Add margin-top to create space from header, keep left alignment */
+    color: #AB6954;
+    font-size: 30px;
+
+}
+
+.about-box, .text-box {
+    padding: 10px;
+    background-color: #BDB76B;
+}
+
+/* Ensure other sections and boxes have proper background colors */
+section {
+    padding: 8px;
+    background-color: rgba(251, 217, 173, 0.8);
+    margin: 40px 0;
+    border-radius: 8px;
+}
+
+/* Specific styles for links in main content */
+.text-box a {
+    color: #556B2F;
+    text-decoration: none;
+    padding: 5px; /* Match the padding of nav-bar links */
+}
+
+.text-box a:hover {
+    color: #fff99e;
+}
+
+.about-tab {
+    display: flex;
+    margin: 20px 0 40px;
+}
+
+.tab-links {
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-links::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #fff99e;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+}
+
+.tab-links.active-link::after {
+    width: 50%;
+}
+
+.tab-contents ul li {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.tab-contents ul li span{
+    color:#fff99e;
+    font-size: 20px;
+}
+
+.tab-contents{
+    display: none;
+}
+
+.tab-contents.active-tab{
+    display: block;
+
+}
+
+.btn.btn-2{
+    display: inline-block;
+    padding: 10px;
+    background:  #AB6954;
+    color: #556B2F;
+}
+
+.contact-form{
+    width: 100%;
+}
+
+form input, form textarea {
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: rgba(231, 185, 124, 0.8);
+    padding: 15px;
+    margin: 15px 0;
+    color: #391818;
+    font-size: 18px;
+    border-radius: 6px;
+}
