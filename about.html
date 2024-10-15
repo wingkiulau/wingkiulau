@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">  
+    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
+</head>
+<body>
+    <header class="header">
+        <h1><a href="index.html" class="no-underline">Wing Kiu Lau</a></h1>  
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html">Home</a></li>  
+                <li><a href="about.html">About Me</a></li>  
+                <li><a href="contact.html">Contact</a></li>
+                <li class = "dropdown">
+                   <a href="projects.html">Projects</a></li>
+                   <div class = "dropdown-content">
+                    <a href="games.html">Games</a>
+                    <a href="data_projects.html">Data Projects</a>
+                    <a href="other_projects.html">Other Projects</a>
+                   </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about description">
+            <h2>About Me</h2>
+            <div class="text-box">
+            <p>Hailing from Hong Kong, I am a junior at Bowdoin College pursuing a double major in 
+                Computer Science & History with a minor in Asian Studies. I am currently studying abroad
+                in Copenhagen for the Fall 2024 semester. 
+
+                With profiency in Python, Java, C#, among other Python data science libraries, my interest
+                in technology includes full-stack development, big data analysis, game development, and 
+                applications of technology in historical research.
+
+                I am particularly interested in directly interacting with clients and crafting
+                innovative projects.
+            </p>
+            </div>
+        </section>
+
+        <section class="about">
+        <div class = "about-tab">
+            <p class = "tab-links active-link" onclick="opentab('skills')">Skills</p>
+            <p class = "tab-links" onclick="opentab('experience')">Experience</p>
+            <p class = "tab-links" onclick="opentab('education')">Education</p>
+        </div>
+ 
+        <div class = "tab-contents active-tab" id="skills">
+            <ul>
+                <li><span>Programming Langauges</span><br>Python, Java, C#</li>
+                <li><span>Libraries</span><br>NumPy, Pandas, Matplotlib, Scikit-learn</li>
+                <li><span>Frameworks</span><br>Unity, Git, GIS</li>
+                <li><span>Concepts</span><br>Algorithms, Data Structures, OOP, ML, Big Data Analysis, Statistics, UI/UX</li>
+                <li><span>Software Suites</span><br>Microsoft 365, Google Suite</li>
+                <li><span>Languages</span><br>English, Cantonese, Mandarin</li>
+            </ul>
+        </div>
+        <div class = "tab-contents" id="experience">
+            <ul>
+                <li><span>2024</span><br>Intro to Computer Science Learning Assistant at Bowdoin College</li>
+                <li><span>2022-2024</span><br>Public Services Assistant at Bowdoin Hawthorne-Longfellow Library</li>
+                <li><span>2022</span><br>Worker at Maxim's Caterers</li>
+                <li><span>2021</span><br>Intern at Caprikon Education</li>
+            </ul>
+        </div>
+        <div class = "tab-contents" id="education">
+            <ul>
+                <li><span>2022-2026</span><br>Bachelor of Arts in Computer Science & History from Bowdoin College</li>
+            </ul>
+        </div>
+
+        <section class="resume">
+            <h2>Resume</h2>
+            <div class="text-box">
+            <a href="WingKiuLau_Resume(2).pdf" download="WingKiuLau_Resume">Download My Resume</a>
+            </div>
+        </section>
+    </section>
+    
+    </main>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for(tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab")
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+
+
+</body>
+</html>
