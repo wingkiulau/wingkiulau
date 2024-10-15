@@ -94,17 +94,16 @@ h2, .about-tab .tab-links {
 
 .about-box, .text-box {
     padding: 10px;
-    background-color: #BDB76B;
 }
 
 section {
     padding: 8px;
     margin: 40px 0;
     border-radius: 8px;
+    background-color: rgba(251, 217, 173, 0.8);
 }
 
 .text-box a {
-    color: #556B2F;
     text-decoration: none;
     padding: 5px;  
 }
@@ -162,7 +161,7 @@ section {
 
 .btn.btn-2{
     display: inline-block;
-    padding: 10px;
+    padding: 20px;
     background:  #AB6954;
     color: #556B2F;
 }
