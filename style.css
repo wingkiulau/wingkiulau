@@ -30,7 +30,7 @@ h1 {
 }
 
 .nav-bar {
-    margin-left: auto; /* Push the navbar to the right */
+    margin-left: auto; 
     height: 80px;
     color: #8B4513;
 }
@@ -45,9 +45,9 @@ h1 {
 }
 
 .nav-bar a {
-    text-decoration: none; /* Remove underline */
+    text-decoration: none; 
     color: #556B2F;
-    padding: 5px; /* Padding for links */
+    padding: 5px;  
 }
 
 .nav-bar a:hover {
@@ -86,7 +86,7 @@ h1 {
 
 h2, .about-tab .tab-links {
     padding: 10px;
-    margin: 10px 0 0 0; /* Add margin-top to create space from header, keep left alignment */
+    margin: 10px 0 0 0; 
     color: #AB6954;
     font-size: 30px;
 
@@ -97,7 +97,6 @@ h2, .about-tab .tab-links {
     background-color: #BDB76B;
 }
 
-/* Ensure other sections and boxes have proper background colors */
 section {
     padding: 8px;
     background-color: rgba(251, 217, 173, 0.8);
@@ -105,11 +104,10 @@ section {
     border-radius: 8px;
 }
 
-/* Specific styles for links in main content */
 .text-box a {
     color: #556B2F;
     text-decoration: none;
-    padding: 5px; /* Match the padding of nav-bar links */
+    padding: 5px;  
 }
 
 .text-box a:hover {
