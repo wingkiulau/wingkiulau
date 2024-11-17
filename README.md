@@ -2,9 +2,13 @@
 
 Check out my website for my latest 2D game projects developed on Unity: https://wingkiulau.github.io/wingkiulau/ 
 
-I'm currently working on a 3D Game on Unity and a Big Data project exploring the affect of greenhouse gases on bird populations in Denmark. 
+# Current Projects
+- 3D Game Development: I'm working on a a chess-inspired from in 3D on Unity. 
+- Big Data Analysis: I'm exploring the impact of greenhouse gases on bird populations in Denmark using Python libraries for data science. This project involves extensive data analysis and visualization.
 
-Currently looking for tech internships for Summer 2025. 
+# Looking for Opportunities
+I'm actively seeking tech internships for Summer 2025. If you have any opportunities or know of any, please feel free to reach out!
+
 <!--
 **sws04212/sws04212** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
