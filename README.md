@@ -1,5 +1,10 @@
 ## My Personal Website 
 
+Check out my website for my latest 2D game projects developed on Unity: https://wingkiulau.github.io/wingkiulau/ 
+
+I'm currently working on a 3D Game on Unity and a Big Data project exploring the affect of greenhouse gases on bird populations in Denmark. 
+
+Currently looking for tech internships for Summer 2025. 
 <!--
 **sws04212/sws04212** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
