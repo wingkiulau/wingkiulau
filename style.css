@@ -223,6 +223,12 @@ h2 {
     display: inline-block;
 }
 
+.about.description .text-box {
+    max-width: 800px;  
+    margin: 0 auto;    
+    padding: 0 20px;  
+}
+
 .tab-links {
     margin-right: 50px;
     font-size: 30px;
