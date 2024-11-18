@@ -5,33 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">  
-    <script src="script.js" defer></script> <!-- Link to JavaScript file -->
+    <script src="index.js" defer></script> 
 </head>
 <body>
-    <header class="header">
-        <h1><a href="index.html" class="no-underline">Wing Kiu Lau</a></h1>  
-        <nav class="nav-bar">
-            <ul>
-                <li><a href="index.html">Home</a></li>  
-                <li><a href="about.html">About Me</a></li>  
-                <li><a href="contact.html">Contact</a></li>
-                <li class = "dropdown">
-                   <a href="projects.html">Projects</a></li>
-                   <div class = "dropdown-content">
-                    <a href="games.html">Games</a>
-                   </div>
+    <nav class="navbar">
+        <div class="navbar_container"> 
+            <a href="/" id="navbar_name">Wing Kiu Lau</a>
+            <div class="navbar_toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar_menu">
+                <li class="navbar_item">
+                    <a href="#home" class="navbar_links">Home</a>
+                </li>  
+                <li>
+                    <a href="#about" class="navbar_links">About Me</a>
+                </li>  
+                <li class="dropdown">
+                    <a href="#projects" class="navbar_links">Projects</a>
+                </li>
+                <li>
+                    <a href="#contact" class="navbar_links">Contact</a>
                 </li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main>
-        <section class="about">
-            <h2>Hi! I'm Wing Kiu. Welcome to my website!</h2>
+    <div class="main">
+        <section id="home" class="about">
+            <h1>Hey, I'm Wing Kiu!</h1>
+            <h2>Interested in Software Engineering, UI/UX, and Data Science</h2>
             <div class="text-box">
             </div>
         </section>
-    </main>
+
+        <section id="about" class="about description">
+            <a href="#about" class="navbar_links">About Me</a>   
+            <div class="text-box">
+                <p> Originally from Hong Kong, I am a junior at Bowdoin College in Brunswick, Maine, pursuing a double major in Computer Science and History with a minor in Asian Studies. Currently, I am studying abroad in Copenhagen for the Fall 2024 semester.
+                    With proficiency in Python, Java, C#, among other Python data science libraries, I am self-learning front-end skills like HTML, CSS, JavaScript and SQL. 
+                    My passion lies in software development, data analysis, game development, and exploring the intersection of technology with historical research. I thrive on client interaction and enjoy creating innovative projects.
+                </p>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="about-tab">
+                <h2 class="tab-links active-link" onclick="opentab('skills')">Skills</h2>
+                <h2 class="tab-links" onclick="opentab('experience')">Experience</h2>
+                <h2 class="tab-links" onclick="opentab('education')">Education</h2>
+            </div>
+ 
+            <div class="tab-contents active-tab" id="skills">
+                <ul>
+                    <li><span>Programming Languages</span><br>Python, Java, C#</li>
+                    <li><span>Libraries</span><br>NumPy, Pandas, Matplotlib, Scikit-learn</li>
+                    <li><span>Frameworks</span><br>Unity, Git, GIS</li>
+                    <li><span>Concepts</span><br>Algorithms, Data Structures, OOP, ML, Big Data Analysis, Statistics, UI/UX</li>
+                    <li><span>Software Suites</span><br>Microsoft 365, Google Suite</li>
+                    <li><span>Languages</span><br>English, Cantonese, Mandarin</li>
+                </ul>
+            </div>
+            <div class="tab-contents" id="experience">
+                <ul>
+                    <li><span>2024</span><br>Intro to Computer Science Learning Assistant at Bowdoin College</li>
+                    <li><span>2022-2024</span><br>Public Services Assistant at Bowdoin Hawthorne-Longfellow Library</li>
+                    <li><span>2022</span><br>Worker at Maxim's Caterers</li>
+                    <li><span>2021</span><br>Intern at Caprikon Education</li>
+                </ul>
+            </div>
+            <div class="tab-contents" id="education">
+                <ul>
+                    <li><span>2022-2026</span><br>Bachelor of Arts in Computer Science & History from Bowdoin College</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="resume">
+            <div class="text-box">
+                <a href="WingKiuLau_Resume.pdf" download="WingKiuLau_Resume.pdf" class="btn btn-2">Download My Resume</a>
+            </div>
+        </section>
+    
+    </div>
+
+    <section id="projects" class="projects-section">
+        <a href="#projects" class="navbar_links">Projects</a>
+        <div class="projects-container">
+            <div class="project">
+                <img src="MapImage.png" alt="Project 1" class="project-img">
+                <h2>History and GIS Project</h2>
+                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown1')">
+                    <span class="arrow">&#9660;</span> 
+                </div>
+                <div id="dropdown1" class="dropdown-content">
+                    <p>A comparison of Northwest Georgia from 1830-1850 preceding and following the Cherokee Removal of 1838 using GIS analysis.</p>
+                    <a href="Lau_HIST_DCS_Project.pdf" download="Lau_HIST_DCS_Project.pdf" class="btn btn-2">Download</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="ClawImage.jpg" alt="Project 2" class="project-img">
+                <h2>Claw & Order: The Button Retrieval</h2>
+                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown2')">
+                    <span class="arrow">&#9660;</span>  
+                </div>
+                <div id="dropdown2" class="dropdown-content">
+                    <p>2D multiplayer claw machine game developed using C# on Unity during a 48-hour game jam.</p>
+                    <a href="https://wingkiulau.github.io/One-Button-Game/" class="btn btn-2">Play</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="FrogImage.jpg" alt="Project 3" class="project-img">
+                <h2>2D Only Go Frogward</h2>
+                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown3')">
+                    <span class="arrow">&#9660;</span>  
+                </div>
+                <div id="dropdown3" class="dropdown-content">
+                    <p>2D platformer game developed using C# on Unity. The player controls a frog character by jumping on spinning lily pads to a portal within a time limit.</p>
+                    <a href="https://wingkiulau.github.io/Only-Go-Frogward/" class="btn btn-2">Play</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <section id="contact" class="contact-form">
+        <a href="#contact" class="navbar_links">Contact Me</a>   
+        <div class="contact-form">
+            <form name="submit-to-google-sheet">
+                <input type="text" name="name" placeholder="your name" required>
+                <input type="email" name="email" placeholder="your email" required>
+                <textarea name="message" rows="6" placeholder="your message"></textarea>
+                <button type="submit" class="btn btn-2">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contact-icons">
+            <a href="https://www.linkedin.com/in/wingkiulau/" target="_blank">
+                <img src="linkedin.png" alt="LinkedIn" class="icon">
+            </a>
+            <a href="https://github.com/wingkiulau" target="_blank">
+                <img src="github.png" alt="GitHub" class="icon">
+            </a>
+            <a href="mailto:wk.lau.012@gmail.com">
+                <img src="email.png" alt="Email" class="icon">
+            </a>
+        </div>
+    </footer>
 
 </body>
 </html>
