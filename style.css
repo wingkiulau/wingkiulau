@@ -306,22 +306,23 @@ ul li span {
 
 .projects-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
 }
 
 .project {
-    flex: 1 1 300px;  
+    flex: 1 1 30%;  /* Adjusts the width of each project to fit 3 per row */
     text-align: center;
     position: relative;
-    max-width: 300px; 
+    margin-bottom: 20px; /* Add some margin below each project */
+    box-sizing: border-box;
 }
 
 .project-img {
-    width: 100%;  
+    width: 100%;  /* Make the image responsive */
     height: 200px;
     object-fit: cover;
     cursor: pointer;
@@ -355,8 +356,6 @@ ul li span {
     margin-top: 10px;
     background-color: rgb(219, 196, 166);
     border-radius: 8px;
-    max-width: 300px; 
-    text-align: left;  
 }
 
 .project h2 {
