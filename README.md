@@ -1,10 +1,6 @@
 # My Personal Website 
 
-Check out my website for my latest 2D game projects developed on Unity: https://wingkiulau.github.io/wingkiulau/ 
-
-## Current Projects
-- 3D Game Development: I'm working on a a chess-inspired from in 3D on Unity. 
-- Big Data Analysis: I'm exploring the impact of greenhouse gases on bird populations in Denmark using Python libraries for data science. This project involves extensive data analysis and visualization.
+Check out my website for my latest game and data projects: https://wingkiulau.github.io/wingkiulau/ 
 
 ## Looking for Opportunities
 I'm actively seeking tech internships for Summer 2025. If you have any opportunities or know of any, please feel free to reach out!
