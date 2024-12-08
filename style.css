@@ -303,6 +303,7 @@ ul li span {
     padding: 20px;
     margin: 40px 0;
 }
+
 .projects-container {
     display: flex;
     justify-content: center;
@@ -311,11 +312,13 @@ ul li span {
     gap: 20px;
     padding: 20px;
 }
+
 .project {
     flex: 1;
     text-align: center;
     position: relative;
 }
+
 .project-img {
     width: 300px;
     height: 200px;
@@ -324,21 +327,33 @@ ul li span {
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
+
 .project-img:hover {
     transform: scale(1.05);
 }
+
 .dropdown-toggle {
     margin-top: 10px;
     cursor: pointer;
     font-size: 18px;
     color: #AB6954;
 }
+
 .arrow {
     font-size: 20px;
     transition: transform 0.3s ease;
 }
+
 .arrow.rotate {
     transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(219, 196, 166);
+    border-radius: 8px;
 }
 
 .project h2 {
