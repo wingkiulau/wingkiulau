@@ -314,18 +314,18 @@ ul li span {
 }
 
 .project {
-    flex: 1 1 30%;  /* Adjusts the width of each project to fit 3 per row */
+    flex: 1 1 30%;   
     text-align: center;
     position: relative;
-    margin-bottom: 20px; /* Add some margin below each project */
+    margin-bottom: 20px; 
     box-sizing: border-box;
 }
 
 .project-img {
-    width: 100%;  /* Make the image responsive */
-    height: 200px;
-    object-fit: cover;
-    cursor: pointer;
+    width: 100%;   
+    height: 200px;  
+    object-fit: cover;  
+    max-width: 100%;  
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
