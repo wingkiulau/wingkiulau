@@ -361,41 +361,6 @@ ul li span {
     font-size: 20px;
     color: #AB6954;
 }
-    
-/* Contact Section */
-.contact-form {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-form input, form textarea {
-    width: 100%;
-    border: 0;
-    outline: none;
-    background: rgba(231, 185, 124, 0.8);
-    padding: 15px;
-    margin: 15px 0;
-    color: #391818;
-    font-size: 1rem;
-    border-radius: 4px;
-}
-
-form input[type="submit"] {
-    background-color: rgb(219, 196, 166);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form input[type="submit"]:hover {
-    background-color: #9bb76d;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-}
 
 /* Footer */
 footer {
