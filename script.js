@@ -492,7 +492,7 @@ async function getAIResponse(query) {
         const response = await fetch('https://wkbot.onrender.com/ask', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: message })
+            body: JSON.stringify({ query })
         });
         
         if (!response.ok) {
