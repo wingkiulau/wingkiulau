@@ -1,176 +1,212 @@
+<!--index.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">  
-    <script src="index.js" defer></script> 
+    <title>Wing Kiu Lau</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar_container"> 
-            <a href="#home" id="navbar_name">Wing Kiu Lau</a>
-            <div class="navbar_toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+  <div id="matrix-bg"></div>
+    <!-- Mode Toggle -->
+    <div class="mode-toggle" id="modeToggle">
+        <span class="toggle-label active" id="portfolioLabel">Portfolio</span>
+        <div class="toggle-switch" id="toggleSwitch"></div>
+        <span class="toggle-label" id="gameLabel">Game</span>
+    </div>
+
+    <!-- Portfolio Mode -->
+     <div class="portfolio-mode" id="portfolioMode">
+        <div class="terminal-hero">
+            <div class="terminal-header">
+                <h1 class="glitch-text">WING KIU LAU</h1>
+                <p class="terminal-text">└─ LINK ESTABLISHED...</p>
+                <p class="terminal-text">└─ LOADING...</p>
+                <p class="terminal-text">└─ PORTFOLIO.EXE RUNNING</p>
+                <p class="terminal-text">└─ STATUS: <span class="status-online">ONLINE</span></p>
+                
+                <div class="login-container" id="loginContainer">
+                    <div class="login-prompt">
+                        > Access portfolio? [Y/n]<span class="cursor"></span>
+                    </div>
+                    <button class="btn-base btn-terminal login-button" id="loginBtn">ENTER PORTFOLIO</button>
+                </div>
             </div>
-            <ul class="navbar_menu">
-                <li class="navbar_item">
-                    <a href="#home" class="navbar_links">Home</a>
-                </li>  
-                <li>
-                    <a href="#about" class="navbar_links">About Me</a>
-                </li>  
-                <li class="dropdown">
-                    <a href="#projects" class="navbar_links">Projects</a>
-                </li>
-                <li>
-                    <a href="#contact" class="navbar_links">Contact</a>
-                </li>
-            </ul>
         </div>
-    </nav>
+    </div>
 
-    <div class="main">
-        <section id="home" class="about">
-            <h1>Hey, I'm Wing Kiu!</h1>
-            <h2>Interested in Software Engineering, UI/UX, and Data Science</h2>
-            <div class="text-box">
+    <!-- Authentication Screen -->
+    <div class="auth-screen" id="authScreen">
+        <div class="auth-terminal">
+            <div class="auth-title">PORTFOLIO ACCESS</div>
+            <div style="color: #8fbc5a; margin-bottom: 15px; font-size: 0.9em;">
+                > Please authenticate to continue...
             </div>
-        </section>
+            <input type="text" class="auth-input" id="usernameInput" placeholder="Username" autocomplete="off">
+            <input type="password" class="auth-input" id="passwordInput" placeholder="Password" autocomplete="off">
+            <div class="auth-buttons">
+                <button class="auth-btn" id="authenticateBtn">LOGIN</button>
+                <button class="auth-btn close-btn" id="closeAuthBtn">CANCEL</button>
+            </div>
+            <!-- Bypass button -->
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="bypass-btn" id="bypassBtn">GUEST ACCESS</button>
+            </div>
+        </div>
+    </div>
 
-        <section id="about" class="about description">
-            <a href="#about" class="navbar_links">About Me</a>   
-            <div class="text-box">
-                <p> Originally from Hong Kong, I am a rising senior at Bowdoin College in Brunswick, Maine, 
+    <!-- About Section -->
+    <div class="portfolio-content" id="portfolioContent">
+        <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img class="profile-pic" src="assets/self-image.png" alt="Profile Picture">
+            <div class="about-text" id="aboutText">
+                <div class="section-title">[About Me]></div>
+                <p>Originally from Hong Kong, I am a rising senior at Bowdoin College, 
                     double majoring in Computer Science and History with a minor in Asian Studies. I’m especially 
                     interested in digital humanities, full-stack development, and technology for social impact. 
                     With experience in multi-language programming, data-driven solutions, and GPT/API integration, 
-                    I enjoy building impactful, user-focused projects at the intersection of technology and the humanities.
-                </p>
+                    I enjoy building impactful, user-focused projects at the intersection of technology and the humanities.</p>
+                <div class="contact-links">
+                    <a href="mailto:wk.lau.012@gmail.com" class="contact-link">Email</a>
+                    <a href="https://linkedin.com/in/wingkiulau" class="contact-link">LinkedIn</a>
+                    <a href="https://github.com/wingkiulau" class="contact-link">GitHub</a>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="about">
-            <div class="about-tab">
-                <h2 class="tab-links active-link" onclick="opentab('skills')">Skills</h2>
-                <h2 class="tab-links" onclick="opentab('experience')">Experience</h2>
-                <h2 class="tab-links" onclick="opentab('education')">Education</h2>
+         <!-- Main Content -->
+        <div class="main-content">
+            <div class="section-tabs">
+                <div class="tab active" onclick="switchTab(event, 'skills')">Skills</div>
+                <div class="tab" onclick="switchTab(event, 'projects')">Projects</div>
             </div>
- 
-            <div class="tab-contents active-tab" id="skills">
-                <ul>
-                    <li><span>Programming Languages</span><br>Python, Java, C, C#, SQL, JavaScript, HTML, CSS, TypeScript</li>
-                    <li><span>Libraries & Tools</span><br>Pandas, NumPy, Matplotlib, Scikit-learn, Selenium, Git</li>
-                    <li><span>Technologies</span><br>Unity, Supabase, FlutterFlow, Deno, Linux, Jupyter</li>
-                    <li><span>Concepts</span><br>Algorithms, Data Structures, OOP, ML, Big Data, UI/UX, LLMs, Web Dev, Agile, Scrum</li>
-                    <li><span>Software Suites</span><br>Microsoft 365, Google Workspace</li>
-                    <li><span>Languages Spoken</span><br>English, Cantonese, Mandarin</li>
-                </ul>
+            
+            <!-- Skills Tab -->
+            <div class="tab-content active" id="skills">
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Frontend</h3>
+                        <p>HTML, CSS, JavaScript, TypeScript, FlutterFlow</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Backend</h3>
+                        <p>Python, Java, C, C#, Deno, SQL, FastAPI</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Database</h3>
+                        <p>PostgreSQL, MySQL, Supabase</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Data</h3>
+                        <p>Pandas, NumPy, Matplotlib, Scikit-learn, Jupyter</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Game Dev</h3>
+                        <p>Unity 2D/3D, Phaser.js, C#</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Tools & Others</h3>
+                        <p>Selenium, Git, Linux, ArcGIS, Microsoft 365, Google Workspace</p>
+                    </div>
+                </div>
             </div>
-            <div class="tab-contents" id="experience">
-                <ul>
-                    <li><span>Summer 2025</span><br>DevOps Engineer Intern, Oak AI (Innovate for Maine Fellowship)</li>
-                    <li><span>2024-Present</span><br>Writing Assistant, Bowdoin College</li>
-                    <li><span>Spring 2024/Fall 2025</span><br>Intro to Computer Science Learning Assistant, Bowdoin College</li>
-                    <li><span>2022-Present</span><br>Public Services Assistant, Bowdoin Hawthorne-Longfellow Library</li>
-                    <li><span>2021</span><br>Intern, Caprikon Education (EdTech Startup)</li>
-                    <li><span>2019</span><br>Intern, Liker Land (FinTech Startup)</li>
-                </ul>
+
+             <!-- Projects Tab -->
+            <div class="tab-content" id="projects">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Portfolio/Game</h3>
+                        <p>You’re currently in Portfolio Mode, but this site also features a Game Mode: a 2D pixel art world built with Phaser.js where you can learn more about me through gameplay.</p>
+                        <a href="#" class="project-link" id="gameToggleBtn">Try Game Mode</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Impact of CO2 Emissions on Bird Populations in Denmark</h3>
+                        <p>Analyzed the impact of greenhouse gases on Denmark's top 20 bird populations using over 47,000 data points. Applied Python libraries in Jupyter Notebook to perform data analysis and develop a supervised machine learning model.</p>
+                        <a href="https://medium.com/@zoeexelbert/understanding-bird-populations-through-denmarks-emissions-8014fd834d8f" class="project-link btn btn-2" target="_blank" rel="noopener noreferrer">See Blog</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Checkmaze (Unity 3D Game)</h3>
+                        <p>3D logic puzzle developed using C# on Unity. Player strategizes reaching target tiles on a chessboard using chess pieces.</p>
+                        <a href="https://3rooks.itch.io/checkmaze" class="project-link btn btn-2">Play</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>History and GIS Project</h3>
+                        <p>A comparison of Northwest Georgia from 1830-1850 preceding and following the Cherokee Removal of 1838 using GIS analysis.</p>
+                        <a href="Lau_HIST_DCS_Project.pdf" download="Lau_HIST_DCS_Project.pdf" class="project-link btn btn-2">Download</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Only Go Frogward (Unity 2D Game)</h3>
+                        <p>2D platformer game developed using C# on Unity. The player controls a frog character by jumping on spinning lily pads to a portal within a time limit.</p>
+                        <a href="https://wingkiulau.github.io/Only-Go-Frogward/" class="project-link btn btn-2">Play</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Claw & Order: The Button Retrieval (Unity 2D Game)</h3>
+                        <p>2D multiplayer claw machine game developed using C# on Unity during a 48-hour game jam.</p>
+                        <a href="https://wingkiulau.github.io/Claw-Order-the-Button-Retrieval/" class="project-link btn btn-2">Play</a>
+                    </div>
+                </div>
             </div>
-            <div class="tab-contents" id="education">
-                <ul>
-                    <li><span>2022-2026</span><br>Bachelor of Arts in Computer Science & History from Bowdoin College</li>
-                </ul>
+        </div>
+
+             <!-- Timeline Section -->
+        <div class="timeline-section">
+            <div class="section-title">[My Journey]</div>
+            <div class="timeline-item">
+                <div class="timeline-date">Summer 2025</div>
+                <div class="timeline-title">DevOps Engineer Intern, Oak AI (Innovate for Maine Fellowship)</div>
+                <div class="timeline-description">I design backend database structures and develop social media API workflows and edge functions to support automation projects focused on enhancing audience engagement for impact leaders. Additionally, I refactored web scrapers for greater efficiency and streamlined AI workflows.</div>
             </div>
-        </section>
-        
-        <section class="resume">
-            <div class="text-box">
-                <a href="WingKiuLau_Resume.pdf" download="WingKiuLau_Resume.pdf" class="btn btn-2">Download My Resume</a>
+            <div class="timeline-item">
+                <div class="timeline-date">Spring 2025 - Present</div>
+                <div class="timeline-title">Writing Assistant, Bowdoin College</div>
+                <div class="timeline-description">I work closely with students to strengthen their written communication, helping them express ideas clearly and confidently across a variety of assignments.</div>
             </div>
-        </section>
-    
+            <div class="timeline-item">
+                <div class="timeline-date">Spring 2024 / Fall 2025</div>
+                <div class="timeline-title">Intro to Computer Science Learning Assistant, Bowdoin College</div>
+                <div class="timeline-description">I support fellow students by leading weekly sessions on foundational programming skills, offering guidance, encouragement, and hands-on help with debugging code, exercises, and labs.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2022 - Present</div>
+                <div class="timeline-title">Public Services Assistant, Bowdoin Hawthorne-Longfellow Library</div>
+                <div class="timeline-description">I assist library patrons with resource circulation and media equipment access, fostering a welcoming environment that supports reading, learning, and research within the community.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2021</div>
+                <div class="timeline-title">Intern, Caprikon Education (EdTech Startup)</div>
+                <div class="timeline-description">I conducted market research on coding programs and provided insights that helped guide strategic expansion into overseas markets.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2019</div>
+                <div class="timeline-title">Intern, Liker Land (FinTech Startup)</div>
+                <div class="timeline-description">I crafted engaging social media content that translated complex FinTech and Blockchain concepts into approachable ideas, helping to grow the community and spark interest in Like coin.</div>
+            </div>
+        </div>
+
+        <!-- WKbot Section -->
+        <div class="wkbot-section">
+            <div class="wkbot-header">
+                <div class="wkbot-avatar">🤖</div>
+                <div class="section-title">[Meet WKbot]</div>
+                <div class="wkbot-description">WKbot is my AI-powered bot that can answer questions about my experience, projects, skills, and even a few fun facts. 
+                        Built with LangChain and the OpenAI API, and trained on my portfolio data, WKbot can tell you more about my work, interests, and background.</div>
+            </div>
+            
+            <div class="wkbot-chat" id="wkbotChat">
+                <div class="message bot">
+                    <strong>WKbot:</strong> Hi! I'm WKbot, Wing Kiu's AI bot. Ask me anything about her projects, skills, or experience!
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Ask about Wing Kiu's work..." onkeypress="handleEnter(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
     </div>
-
-    <section id="projects" class="projects-section">
-        <a href="#projects" class="navbar_links">Projects</a>
-        <div class="projects-container">
-            <div class="project">
-                <img src="MapImage.png" alt="Project 1" class="project-img">
-                <h2>History and GIS Project</h2>
-                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown1')">
-                    <span class="arrow">&#9660;</span> 
-                </div>
-                <div id="dropdown1" class="dropdown-content">
-                    <p>A comparison of Northwest Georgia from 1830-1850 preceding and following the Cherokee Removal of 1838 using GIS analysis.</p>
-                    <a href="Lau_HIST_DCS_Project.pdf" download="Lau_HIST_DCS_Project.pdf" class="btn btn-2">Download</a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="ClawImage.jpg" alt="Project 2" class="project-img">
-                <h2>Claw & Order: The Button Retrieval (Unity 2D Game)</h2>
-                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown2')">
-                    <span class="arrow">&#9660;</span>  
-                </div>
-                <div id="dropdown2" class="dropdown-content">
-                    <p>2D multiplayer claw machine game developed using C# on Unity during a 48-hour game jam.</p>
-                    <a href="https://wingkiulau.github.io/Claw-Order-the-Button-Retrieval/" class="btn btn-2">Play</a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="FrogImage.jpg" alt="Project 3" class="project-img">
-                <h2>Only Go Frogward (Unity 2D Game)</h2>
-                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown3')">
-                    <span class="arrow">&#9660;</span>  
-                </div>
-                <div id="dropdown3" class="dropdown-content">
-                    <p>2D platformer game developed using C# on Unity. The player controls a frog character by jumping on spinning lily pads to a portal within a time limit.</p>
-                    <a href="https://wingkiulau.github.io/Only-Go-Frogward/" class="btn btn-2">Play</a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="ChessGame.jpg" alt="Project 4" class="project-img">
-                <h2>Checkmaze (Unity 3D Game)</h2>
-                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown4')">
-                    <span class="arrow">&#9660;</span>  
-                </div>
-                <div id="dropdown4" class="dropdown-content">
-                    <p>3D logic puzzle developed using C# on Unity. Player strategizes reaching target tiles on a chessboard using chess pieces.</p>
-                    <a href="https://3rooks.itch.io/checkmaze" class="btn btn-2">Play</a>
-                </div>
-            </div> 
-            <div class="project">
-                <img src="CorrelationHeatmap.jpg" alt="Project 5" class="project-img">
-                <h2>Impact of CO2 Emissions on Bird Populations in Denmark</h2>
-                <div class="dropdown-toggle" onclick="toggleDropdown('dropdown5')">
-                    <span class="arrow">&#9660;</span>  
-                </div>
-                <div id="dropdown5" class="dropdown-content">
-                    <p>Analyzed the impact of greenhouse gases on Denmark's top 20 bird populations using over 47,000 data points from the eBird API and Greenhouse Gases CSV datasets. Applied Python libraries (Pandas, NumPy, Matplotlib, scikit-learn) in Jupyter Notebook to perform data analysis and develop a supervised machine learning model identifying key correlations.</p>
-                    <a href="https://medium.com/@zoeexelbert/understanding-bird-populations-through-denmarks-emissions-8014fd834d8f " class="btn btn-2">See Blog</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <a href="#contact" class="navbar_links">Contact Me</a>
-        <p>You can reach out to me at <a href="mailto:wk.lau.012@gmail.com">wk.lau.012@gmail.com</a></p>
-        <div class="contact-icons">
-            <a href="https://www.linkedin.com/in/wingkiulau/" target="_blank">
-                <img src="linkedin.png" alt="LinkedIn" class="icon">
-            </a>
-            <a href="https://github.com/wingkiulau" target="_blank">
-                <img src="github.png" alt="GitHub" class="icon">
-            </a>
-            <a href="mailto:wk.lau.012@gmail.com">
-                <img src="email.png" alt="Email" class="icon">
-            </a>
-        </div>
-    </section>
-
-</body>
+    <script src="script.js"></script>
+</body> 
 </html>

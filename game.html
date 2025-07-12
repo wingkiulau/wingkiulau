@@ -1,0 +1,319 @@
+<!--game.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wing Kiu Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Game Chat Popup */
+    .game-chat-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border: 3px solid #0f4c75;
+      border-radius: 15px;
+      padding: 25px;
+      width: 450px;
+      max-height: 600px;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      color: #e0e0e0;
+    }
+
+    .game-chat-header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #0f4c75;
+      padding-bottom: 15px;
+    }
+
+    .game-chat-header h3 {
+      margin: 0;
+      color: #3bb78f;
+      font-size: 22px;
+      text-shadow: 0 0 10px rgba(59, 183, 143, 0.5);
+    }
+
+    .game-chat-header p {
+      margin: 8px 0 0;
+      font-size: 14px;
+      color: #b0b0b0;
+    }
+
+    .game-chat-messages {
+      height: 350px;
+      overflow-y: auto;
+      border: 2px solid #0f4c75;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 14px;
+      border-radius: 10px;
+    }
+    .game-message {
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      line-height: 1.4;
+    }
+    .game-message.user {
+      text-align: right;
+      margin-left: 30px;
+      color: white;
+    }
+    .game-message.bot {
+      margin-right: 30px;
+      color: white;
+    }
+    .game-message strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      opacity: 0.9;
+      color: white;
+    }
+
+    .game-chat-input-container {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .game-chat-input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #0f4c75;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #e0e0e0;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .game-chat-input:focus {
+      outline: none;
+      border-color: #3bb78f;
+      box-shadow: 0 0 10px rgba(59, 183, 143, 0.3);
+    }
+
+    .game-chat-button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #3bb78f, #0f4c75);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .game-chat-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(59, 183, 143, 0.3);
+    }
+
+    .game-chat-button:disabled {
+      background: #555;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .game-close-chat {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #3bb78f;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .game-close-chat:hover {
+      background: rgba(59, 183, 143, 0.2);
+      transform: scale(1.1);
+    }
+
+    .game-typing-indicator {
+      font-style: italic;
+      color: #3bb78f;
+      display: none;
+      padding: 5px 15px;
+      font-size: 13px;
+    }
+
+    .game-typing-indicator::after {
+      content: '...';
+      animation: dots 1.5s infinite;
+    }
+
+    @keyframes dots {
+      0% { content: ''; }
+      33% { content: '.'; }
+      66% { content: '..'; }
+      100% { content: '...'; }
+    }
+  </style>
+</head>
+<body class="game-mode-active">
+  <div class="game-mode active" id="gameMode">
+    <!-- Mode Toggle Button -->
+
+    <div class="mode-toggle" id="modeToggle">
+        <span class="toggle-label" id="portfolioLabel">Portfolio</span>
+        <div class="toggle-switch" id="toggleSwitch"></div>
+        <span class="toggle-label active" id="gameLabel">Game</span>
+    </div>
+
+    <div class="game-container">
+      <div id="game-canvas"></div>
+    </div>
+  </div>
+
+  <!-- Chat Popup -->
+  <div class="game-chat-popup" id="game-chat-popup">
+    <button class="game-close-chat" onclick="closeChatPopup()" aria-label="Close Chat Popup">&times;</button>
+    <div class="game-chat-header">
+      <h3>WKBot</h3>
+      <p>Ask me anything!</p>
+    </div>
+     <div id="game-chat-messages" class="game-chat-messages">
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                addMessage("Hi! I'm WKbot, Wing Kiu's AI bot. Ask me anything about her projects, skills, or experience!", false);
+            });
+        </script>
+    </div>
+    <div class="game-chat-input-container">
+      <input id="game-chat-input" class="game-chat-input" type="text" autocomplete="off" />
+      <button id="game-chat-button" class="game-chat-button" onclick="sendMessage()">Send</button>
+    </div>
+    <div id="game-typing-indicator" class="game-typing-indicator">WKBot is thinking...</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="game-script.js"></script>
+  <script>
+    window.openChatPopup = function() {
+    const chatPopup = document.getElementById('game-chat-popup');
+    if (!chatPopup) {
+        console.warn('Game chat popup not found');
+        return;
+    }
+    chatPopup.style.display = 'flex';
+
+    const chatInput = document.getElementById('game-chat-input');
+    if (chatInput) {
+        setTimeout(() => chatInput.focus(), 100);
+    }
+    
+    // Disable Phaser input if game exists
+    if (window.currentGame && window.currentGame.input && window.currentGame.input.keyboard) {
+        window.currentGame.input.keyboard.enabled = false;
+    }
+};
+
+window.closeChatPopup = function() {
+    const chatPopup = document.getElementById('game-chat-popup');
+    if (chatPopup) {
+        chatPopup.style.display = 'none';
+    }
+    
+    // Re-enable Phaser input if game exists
+    if (window.currentGame && window.currentGame.input && window.currentGame.input.keyboard) {
+        window.currentGame.input.keyboard.enabled = true;
+    }
+};
+
+window.addMessage = function(content, isUser = false) {
+    const messagesContainer = document.getElementById('game-chat-messages');
+    if (!messagesContainer) {
+        console.error('Game messages container not found');
+        return;
+    }
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `game-message ${isUser ? 'user' : 'bot'}`;
+    messageDiv.innerHTML = `<strong>${isUser ? 'You' : 'WKBot'}:</strong> ${content}`;
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+};
+
+window.showTypingIndicator = function() {
+    const indicator = document.getElementById('game-typing-indicator');
+    if (indicator) indicator.style.display = 'block';
+};
+
+window.hideTypingIndicator = function() {
+    const indicator = document.getElementById('game-typing-indicator');
+    if (indicator) indicator.style.display = 'none';
+};
+
+window.getAIResponse = async function(query) {
+    try {
+        const response = await fetch('http://localhost:8000/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: query })
+        });
+        const data = await response.json();
+        return data.answer;
+    } catch (error) {
+        console.error('API Error:', error);
+        return 'Sorry, I encountered an error connecting to my knowledge base. Please try again.';
+    }
+};
+
+window.sendMessage = async function() {
+    const input = document.getElementById('game-chat-input');
+    const sendButton = document.getElementById('game-chat-button');
+    
+    if (!input || !sendButton) {
+        console.error('Game chat input elements not found');
+        return;
+    }
+    
+    const message = input.value.trim();
+    if (!message) return;
+    
+    console.log(`Sending game message: ${message}`);
+    
+    // Add user message and clear input
+    window.addMessage(message, true);
+    input.value = '';
+    
+    // Disable input while processing
+    sendButton.disabled = true;
+    window.showTypingIndicator();
+    
+    try {
+        const response = await window.getAIResponse(message);
+        window.hideTypingIndicator();
+        window.addMessage(response);
+    } catch (error) {
+        console.error('Game chat error:', error);
+        window.hideTypingIndicator();
+        window.addMessage('Sorry, something went wrong. Please try again.');
+    } finally {
+        sendButton.disabled = false;
+        input.focus();
+    }
+};
+    </script>
+</body>
+</html>
