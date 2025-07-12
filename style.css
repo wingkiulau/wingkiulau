@@ -103,32 +103,6 @@ html, body {
     background: #f4f1e8;
 }
 
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .mode-toggle {
-        top: 10px;
-        right: 10px;
-        padding: 8px 16px;
-        font-size: 12px;
-        gap: 8px;
-    }
-    
-    .toggle-switch {
-        width: 40px;
-        height: 20px;
-    }
-    
-    .toggle-switch::before {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .toggle-switch.active::before {
-        transform: translateX(20px);
-    }
-}
-
 /* High contrast mode */
 @media (prefers-contrast: high) {
     .mode-toggle {
@@ -923,47 +897,6 @@ p {
     }
 }
 
-/* Structures */
-@media (max-width: 1200px) {
-    .container {
-        grid-template-areas: 
-            "sidebar main"
-            "timeline wkbot";
-        grid-template-columns: 300px 1fr;
-        grid-template-rows: auto auto;
-        height: auto;
-        min-height: 100vh;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        grid-template-areas: 
-            "sidebar"
-            "main"
-            "timeline"
-            "wkbot";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
-        height: auto;
-        min-height: 100vh;
-        padding: 10px;
-    }
-    
-    body {
-        overflow-y: auto;
-    }
-    
-    .main-content, .timeline-section, .wkbot-section {
-        max-height: none;
-    }
-    
-    .terminal-hero {
-        height: 100vh;
-        min-height: 600px;
-    }
-}
-
 .container {
     display: grid;
     grid-template-areas: 
@@ -1003,25 +936,136 @@ p {
     overflow: hidden;
 }
 
-/* Responsive Design */
+/* Tablets */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-areas: 
+            "sidebar main"
+            "timeline wkbot";
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: auto auto;
+        height: auto;
+        min-height: 100vh;
+    }
+}
+
+/* Large mobiles */
 @media (max-width: 768px) {
+    .container {
+        grid-template-areas: 
+            "sidebar"
+            "main"
+            "timeline"
+            "wkbot";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        height: auto;
+        min-height: 100vh;
+        padding: 10px;
+    }
+    
+    body {
+        overflow-y: auto;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .main-content, .timeline-section, .wkbot-section {
+        max-height: none;
+    }
+    
+    .terminal-hero {
+        height: auto;
+        min-height: unset;
+        padding: 20px 10px;
+    }
+    
+    /* Stack profile section vertically */
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    /* Skills grid: 2 columns */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
     .section {
         padding: 25px;
     }
     
+    /* Mode toggle adjustments */
     .mode-toggle {
         top: 10px;
         right: 10px;
         padding: 8px 15px;
+        font-size: 12px;
+        gap: 8px;
     }
 
+    .toggle-switch {
+        width: 40px;
+        height: 20px;
+    }
+    
+    .toggle-switch::before {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .toggle-switch.active::before {
+        transform: translateX(20px);
+    }
+
+    /* WKbot container stacked */
     .wkbot-container {
         flex-direction: column;
         text-align: center;
     }
 
+    /* Portfolio input area stacked */
     .portfolio-input-area {
         flex-direction: column;
     }
+}
 
+/* Small mobiles */
+@media (max-width: 480px) {
+    .mode-toggle {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .profile-pic {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .section-tabs {
+        flex-direction: column;
+    }
+
+    .tab {
+        padding: 8px 10px;
+    }
+
+    .portfolio-content {
+        padding: 10px 5px;
+    }
+
+    /* Skills grid to 1 column */
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Buttons & links full width */
+    button, .project-link {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
