@@ -9,7 +9,7 @@ export function createLabInterface(scene, backgroundSprite) {
       height: 120,
       rotation: 0.03,
       description: ‘Full-stack AI meeting summarization tool. Generates structured summaries, per-person action items, and risk flags from raw notes. Built with Next.js, PostgreSQL, Prisma, OpenAI API, deployed on Vercel.’,
-      url: ‘https://github.com/wingkiulau’
+      url: ‘https://meeting-intelligence-app.vercel.app/’
     },
     {
       name: ‘GIS Analysis of Northwest Georgia (1830–1850)’,
@@ -29,7 +29,7 @@ export function createLabInterface(scene, backgroundSprite) {
       height: 120,
       rotation: 0,
       description: ‘Interactive Tableau dashboard with 2 years of daily market data across 6 asset classes. Python pipeline computes Sharpe ratio, max drawdown, rolling volatility. Streamlit app with OpenAI generates investment commentary.’,
-      url: ‘https://github.com/wingkiulau’
+      url: ‘https://finrisk-radar.streamlit.app/’
     },
     {
       name: ‘Predicting Ecological Trends with ML’,
