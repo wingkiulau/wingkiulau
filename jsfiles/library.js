@@ -25,15 +25,15 @@ export function createLibraryBooks(scene) {
 
 function showBookCategory(scene, category) {
   const categoryInfo = {
-    '🗣️ Lexicon': 'English, Cantonese, Mandarin',
-    '💻 Codecraft': 'Python, Java, C, C#, TypeScript, JavaScript, HTML, CSS, SQL',
-    'TechTome': 
-      '🔧 Libraries & Tools:\n' +
-      'Pandas, NumPy, Matplotlib, Scikit-learn, Selenium, Git\n\n' +
-      '💻 Technologies:\n' +
-      'Unity, Supabase, FlutterFlow, Deno, Linux, Jupyter\n\n' +
-      '📚 Concepts:\n' +
-      'Algorithms, Data Structures, OOP, ML, Big Data, UI/UX, LLMs, Web Dev, Agile, Scrum',
+    '🗣️ Lexicon': 'English (Native), Mandarin (Advanced), Cantonese (Fluent)',
+    '💻 Codecraft': 'Python (NumPy, Pandas, scikit-learn), Java, TypeScript/JavaScript, C, C#, SQL, HTML/CSS',
+    'TechTome':
+      '🔧 Backend & Infrastructure:\n' +
+      'FastAPI, PostgreSQL, Docker, OAuth 2.0, REST APIs\n\n' +
+      '🤖 AI & Data:\n' +
+      'LangChain, OpenAI API, ML modeling, data engineering, feature engineering, model evaluation\n\n' +
+      '🛠️ Tools & Methods:\n' +
+      'Git, Agile/Scrum, Test Automation, Concurrency, ArcGIS, Streamlit, Tableau, Prisma, Next.js',
     '👩‍💻 Everyday': 'Microsoft Office Suite, Google Workspace, Slack, Notion, Atlassian Confluence',
     '🧠 Field Notes': 
       'A log of current thoughts...\n\n' +

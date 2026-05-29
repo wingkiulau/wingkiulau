@@ -28,8 +28,12 @@ function createBookPages(scene) {
       rotation: -6.22,
       entries: [
         {
-          date: '2022-2026',
-          description: 'Bachelor of Arts in Computer Science & History from Bowdoin College'
+          date: '2022–2026',
+          description: 'BA in Computer Science & History (Double Major), Asian Studies Minor — Bowdoin College | GPA: 3.77'
+        },
+        {
+          date: 'Honors Project',
+          description: 'Researching RAG systems for historical narratives, analyzing how AI shapes public memory, knowledge formation, and user trust.'
         }
       ]
     },
@@ -42,19 +46,19 @@ function createBookPages(scene) {
       rotation: -6.28,
       entries: [
         {
-          date: 'Summer 2025',
-          description: 'DevOps Engineer Intern, Oak AI (Innovate for Maine Fellowship)'
+          date: 'May–Aug 2025',
+          description: 'Software Engineer Intern, Oak AI (Innovate for Maine Fellowship) — 10× AI throughput, 15× latency reduction'
         },
         {
-          date: '2024-Present',
-          description: 'Writing Assistant, Bowdoin College'
+          date: 'Feb 2025–May 2026',
+          description: 'Writing Assistant, Bowdoin College Baldwin Center for Learning and Teaching'
         },
         {
-          date: 'Spring 2024/Fall 2025',
-          description: 'Intro to Computer Science Learning Assistant, Bowdoin College'
+          date: 'Jan 2024–May 2024 / Sep 2025–May 2026',
+          description: 'Introduction to Computer Science Learning Assistant, Bowdoin College'
         },
         {
-          date: '2022-Present',
+          date: 'Oct 2022–May 2026',
           description: 'Public Services Assistant, Bowdoin Hawthorne-Longfellow Library'
         },
         {

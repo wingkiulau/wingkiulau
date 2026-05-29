@@ -2,54 +2,54 @@
 export function createLabInterface(scene, backgroundSprite) {
   const labZones = [
     {
-      name: 'Only Go Frogward (Unity 2D Game)',
+      name: ‘Meeting Intelligence App’,
       x: 75,
       y: 245,
       width: 120,
       height: 120,
       rotation: 0.03,
-      description: '2D platformer where players control a frog jumping on spinning lily pads to reach a portal within a time limit. Built with C# in Unity.',
-      url: 'https://wingkiulau.github.io/Only-Go-Frogward/'
+      description: ‘Full-stack AI meeting summarization tool. Generates structured summaries, per-person action items, and risk flags from raw notes. Built with Next.js, PostgreSQL, Prisma, OpenAI API, deployed on Vercel.’,
+      url: ‘https://github.com/wingkiulau’
     },
     {
-      name: 'History and GIS Project',
+      name: ‘GIS Analysis of Northwest Georgia (1830–1850)’,
       x: 100,
       y: 470,
       width: 175,
       height: 215,
       rotation: 0,
-      description: 'GIS analysis comparing Northwest Georgia\'s infrastructure and demography before and after the 1838 Cherokee Removal.',
+      description: ‘Analyzed 8 census and land-use datasets using ArcGIS to map demographic and infrastructure changes surrounding the 1838 Cherokee Removal. Produced 14 visualizations for a cross-disciplinary research paper.’,
       url: "assets/files/Lau_HIST_DCS_Project.pdf"
     },
     {
-      name: 'Checkmaze (Unity 3D Game)',
+      name: ‘Financial Portfolio Analytics Dashboard’,
       x: 265,
       y: 248,
       width: 120,
-      height:120,
+      height: 120,
       rotation: 0,
-      description: '3D logic puzzle requiring strategic moves with chess pieces to reach target tiles. Developed in Unity with C#.',
-      url: 'https://3rooks.itch.io/checkmaze'
+      description: ‘Interactive Tableau dashboard with 2 years of daily market data across 6 asset classes. Python pipeline computes Sharpe ratio, max drawdown, rolling volatility. Streamlit app with OpenAI generates investment commentary.’,
+      url: ‘https://github.com/wingkiulau’
     },
     {
-      name: 'Impact of CO2 Emissions on Bird Populations in Denmark',
+      name: ‘Predicting Ecological Trends with ML’,
       x: 500,
       y: 48,
       width: 68,
       height: 70,
       rotation: 0,
-      description: 'Analyzed data from eBird API and public Greenhouse Gases datasets to study greenhouse gas effects on Denmark’s top 20 bird populations. Used Python (Pandas, NumPy, Matplotlib, scikit-learn) in Jupyter to build supervised ML models identifying key correlations.',
-      url: 'https://medium.com/@zoeexelbert/understanding-bird-populations-through-denmarks-emissions-8014fd834d8f'
+      description: ‘Built and evaluated a Random Forest model (78.4% accuracy) on 47k+ ecological records. Engineered features, cleaned noisy datasets, and analyzed model interpretability using Python (Pandas, scikit-learn, Matplotlib).’,
+      url: ‘https://medium.com/@zoeexelbert/understanding-bird-populations-through-denmarks-emissions-8014fd834d8f’
     },
     {
-      name: 'Claw & Order: The Button Retrieval (Unity 2D Game)',
+      name: ‘AI-Powered Personal Portfolio’,
       x: 710,
       y: 0,
       width: 70,
       height: 280,
       rotation: 0,
-      description: '2D multiplayer claw machine game developed during a 48-hour game jam using C# and Unity.',
-      url: 'https://wingkiulau.github.io/Claw-Order-the-Button-Retrieval/'
+      description: ‘Full-stack portfolio with AI chatbot, retrieval pipeline, and custom knowledge base. Built with FastAPI, LangChain, OpenAI API, and deployed on GitHub Pages. (You\’re exploring it right now!)’,
+      url: ‘https://wingkiulau.github.io’
     }
   ];
 
