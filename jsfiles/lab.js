@@ -159,7 +159,7 @@ function drawLabThumbnails(scene) {
   const H = 120;
 
   // Right-side column: stacked with a gap between them
-  const cx = 580;
+  const cx = 730;
   const meetingTopY = 110;
   const financeTopY  = 360;
 
