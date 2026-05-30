@@ -186,21 +186,15 @@
 
   <!-- Chat Popup -->
   <div class="game-chat-popup" id="game-chat-popup">
-    <button class="game-close-chat" onclick="closeChatPopup()" aria-label="Close Chat Popup">&times;</button>
+    <button class="game-close-chat" aria-label="Close Chat Popup">&times;</button>
     <div class="game-chat-header">
       <h3>WKBot</h3>
       <p>Ask me anything!</p>
     </div>
-     <div id="game-chat-messages" class="game-chat-messages">
-        <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                addMessage("Hi! I'm WKbot, Wing Kiu's AI bot. Ask me anything about her projects, skills, or experience!", false);
-            });
-        </script>
-    </div>
+     <div id="game-chat-messages" class="game-chat-messages"></div>
     <div class="game-chat-input-container">
       <input id="game-chat-input" class="game-chat-input" type="text" autocomplete="off" />
-      <button id="game-chat-button" class="game-chat-button" onclick="sendMessage()">Send</button>
+      <button id="game-chat-button" class="game-chat-button">Send</button>
     </div>
     <div id="game-typing-indicator" class="game-typing-indicator">WKBot is thinking...</div>
   </div>
@@ -208,115 +202,5 @@
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="game-script.js"></script>
-  <script>
-    window.openChatPopup = function() {
-    const chatPopup = document.getElementById('game-chat-popup');
-    if (!chatPopup) {
-        console.warn('Game chat popup not found');
-        return;
-    }
-    chatPopup.style.display = 'flex';
-
-    const chatInput = document.getElementById('game-chat-input');
-    if (chatInput) {
-        setTimeout(() => chatInput.focus(), 100);
-    }
-    
-    // Disable Phaser input if game exists
-    if (window.currentGame && window.currentGame.input && window.currentGame.input.keyboard) {
-        window.currentGame.input.keyboard.enabled = false;
-    }
-};
-
-window.closeChatPopup = function() {
-    const chatPopup = document.getElementById('game-chat-popup');
-    if (chatPopup) {
-        chatPopup.style.display = 'none';
-    }
-    
-    // Re-enable Phaser input if game exists
-    if (window.currentGame && window.currentGame.input && window.currentGame.input.keyboard) {
-        window.currentGame.input.keyboard.enabled = true;
-    }
-};
-
-window.addMessage = function(content, isUser = false) {
-    const messagesContainer = document.getElementById('game-chat-messages');
-    if (!messagesContainer) {
-        console.error('Game messages container not found');
-        return;
-    }
-
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `game-message ${isUser ? 'user' : 'bot'}`;
-    messageDiv.innerHTML = `<strong>${isUser ? 'You' : 'WKBot'}:</strong> ${content}`;
-    messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-};
-
-window.showTypingIndicator = function() {
-    const indicator = document.getElementById('game-typing-indicator');
-    if (indicator) indicator.style.display = 'block';
-};
-
-window.hideTypingIndicator = function() {
-    const indicator = document.getElementById('game-typing-indicator');
-    if (indicator) indicator.style.display = 'none';
-};
-
-window.getAIResponse = async function(query) {
-    try {
-        const response = await fetch('https://wkbot.onrender.com/ask', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query })
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data.answer;
-    } catch (error) {
-        console.error('API Error:', error);
-        return 'Sorry, I encountered an error connecting to my knowledge base. Please try again.';
-    }
-};
-
-window.sendMessage = async function() {
-    const input = document.getElementById('game-chat-input');
-    const sendButton = document.getElementById('game-chat-button');
-    
-    if (!input || !sendButton) {
-        console.error('Game chat input elements not found');
-        return;
-    }
-    
-    const message = input.value.trim();
-    if (!message) return;
-    
-    console.log(`Sending game message: ${message}`);
-    
-    // Add user message and clear input
-    window.addMessage(message, true);
-    input.value = '';
-    
-    // Disable input while processing
-    sendButton.disabled = true;
-    window.showTypingIndicator();
-    
-    try {
-        const response = await window.getAIResponse(message);
-        window.hideTypingIndicator();
-        window.addMessage(response);
-    } catch (error) {
-        console.error('Game chat error:', error);
-        window.hideTypingIndicator();
-        window.addMessage('Sorry, something went wrong. Please try again.');
-    } finally {
-        sendButton.disabled = false;
-        input.focus();
-    }
-};
-    </script>
 </body>
 </html>

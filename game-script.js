@@ -140,22 +140,112 @@ async function loadGameModule() {
 }
 
 function setupGameChatListeners() {
-    // Set up chat input listeners
     const gameChatInput = document.getElementById('game-chat-input');
     if (gameChatInput) {
         gameChatInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
-                if (window.sendMessage) {
-                    window.sendMessage();
-                }
+                window.sendMessage && window.sendMessage();
             }
         });
     }
+
+    const sendBtn = document.getElementById('game-chat-button');
+    if (sendBtn) {
+        sendBtn.addEventListener('click', () => window.sendMessage && window.sendMessage());
+    }
+
+    const closeBtn = document.querySelector('.game-close-chat');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => window.closeChatPopup && window.closeChatPopup());
+    }
 }
+
+window.openChatPopup = function() {
+    const chatPopup = document.getElementById('game-chat-popup');
+    if (!chatPopup) return;
+    chatPopup.style.display = 'flex';
+    const chatInput = document.getElementById('game-chat-input');
+    if (chatInput) setTimeout(() => chatInput.focus(), 100);
+    if (window.currentGame && window.currentGame.input && window.currentGame.input.keyboard) {
+        window.currentGame.input.keyboard.enabled = false;
+    }
+};
+
+window.closeChatPopup = function() {
+    const chatPopup = document.getElementById('game-chat-popup');
+    if (chatPopup) chatPopup.style.display = 'none';
+    if (window.currentGame && window.currentGame.input && window.currentGame.input.keyboard) {
+        window.currentGame.input.keyboard.enabled = true;
+    }
+};
+
+window.addMessage = function(content, isUser = false) {
+    const messagesContainer = document.getElementById('game-chat-messages');
+    if (!messagesContainer) return;
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `game-message ${isUser ? 'user' : 'bot'}`;
+    messageDiv.innerHTML = `<strong>${isUser ? 'You' : 'WKBot'}:</strong> ${content}`;
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+};
+
+window.showTypingIndicator = function() {
+    const indicator = document.getElementById('game-typing-indicator');
+    if (indicator) indicator.style.display = 'block';
+};
+
+window.hideTypingIndicator = function() {
+    const indicator = document.getElementById('game-typing-indicator');
+    if (indicator) indicator.style.display = 'none';
+};
+
+window.getAIResponse = async function(query) {
+    try {
+        const response = await fetch('https://wkbot.onrender.com/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query })
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        return data.answer;
+    } catch (error) {
+        console.error('API Error:', error);
+        return 'Sorry, I encountered an error connecting to my knowledge base. Please try again.';
+    }
+};
+
+window.sendMessage = async function() {
+    const input = document.getElementById('game-chat-input');
+    const sendButton = document.getElementById('game-chat-button');
+    if (!input || !sendButton) return;
+
+    const message = input.value.trim();
+    if (!message) return;
+
+    window.addMessage(message, true);
+    input.value = '';
+    sendButton.disabled = true;
+    window.showTypingIndicator();
+
+    try {
+        const response = await window.getAIResponse(message);
+        window.hideTypingIndicator();
+        window.addMessage(response);
+    } catch (error) {
+        console.error('Game chat error:', error);
+        window.hideTypingIndicator();
+        window.addMessage('Sorry, something went wrong. Please try again.');
+    } finally {
+        sendButton.disabled = false;
+        input.focus();
+    }
+};
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     initializeGameMode();
+    window.addMessage("Hi! I'm WKbot, Wing Kiu's AI bot. Ask me anything about her projects, skills, or experience!", false);
 });
 
