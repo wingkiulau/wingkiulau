@@ -498,9 +498,6 @@ async function getAIResponse(query) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const data = await response.json();
         return data.answer || 'No response received';
     } catch (error) {

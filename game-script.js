@@ -132,31 +132,10 @@ function initializeGame() {
 
 async function loadGameModule() {
     try {
-        // Import your game module
-        const gameModule = await import('./game.js');
+        await import('./game.js');
         console.log('Game module loaded successfully');
-        
-        // Initialize the game
-        const game = gameModule.initializeGame();
-        console.log('Game initialized:', game);
-        
-        // Store game reference globally for cleanup
-        window.currentGame = game;
-        
     } catch (error) {
         console.error('Failed to load game module:', error);
-        
-        // Fallback: try loading as a regular script
-        const gameScript = document.createElement('script');
-        gameScript.type = 'module';
-        gameScript.src = './game.js';
-        gameScript.onload = () => {
-            console.log('Game script loaded as fallback');
-        };
-        gameScript.onerror = () => {
-            console.error('Failed to load game script even as fallback');
-        };
-        document.head.appendChild(gameScript);
     }
 }
 

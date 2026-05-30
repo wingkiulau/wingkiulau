@@ -355,7 +355,7 @@ function returnToWorld() {
   hideSavedMessage();
   
   // Close chat popup when leaving wizard
-  if (document.getElementById('chat-popup')) {
+  if (document.getElementById('game-chat-popup')) {
     window.closeChatPopup();
   }
   
