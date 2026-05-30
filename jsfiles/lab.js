@@ -158,10 +158,10 @@ function drawLabThumbnails(scene) {
   const W = 120;
   const H = 120;
 
-  // Match hitbox centers (x: 75, y: 245) and (x: 265, y: 248)
-  const meetingX = 75 - W / 2;   // 15
+  // Right side, same y as hitboxes, same 190px center-to-center gap
+  const meetingX = 540 - W / 2;  // 480
   const meetingY = 245 - H / 2;  // 185
-  const financeX = 265 - W / 2;  // 205
+  const financeX = 730 - W / 2;  // 670
   const financeY = 248 - H / 2;  // 188
 
   // --- Meeting Intelligence App ---
@@ -173,7 +173,7 @@ function drawLabThumbnails(scene) {
   mg.fillStyle(0xff3333); mg.fillCircle(meetingX + W - 12, meetingY + 10, 6);
   scene.interactiveObjects.push(mg);
 
-  const mcx = meetingX + W / 2;
+  const mcx = 540;
   [
     scene.add.text(mcx, meetingY + 5,      'MEETING #9,847',      { fontSize: '8px',  color: '#334466', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
     scene.add.text(mcx, meetingY + H - 32, 'z  z  z',             { fontSize: '13px', color: '#7788aa', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
@@ -201,7 +201,7 @@ function drawLabThumbnails(scene) {
   fg.fillStyle(0x00e844); fg.fillCircle(pts[pts.length - 1][0], pts[pts.length - 1][1], 3);
   scene.interactiveObjects.push(fg);
 
-  const fcx = financeX + W / 2;
+  const fcx = 730;
   [
     scene.add.text(fcx, financeY + 5,      'STONKS',       { fontSize: '12px', color: '#00e844', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
     scene.add.text(fcx, financeY + H - 14, 'NUMBER GO UP', { fontSize: '7px',  color: '#44cc66', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
