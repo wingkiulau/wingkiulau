@@ -158,54 +158,52 @@ function drawLabThumbnails(scene) {
   const W = 120;
   const H = 120;
 
-  const y = 220; // same vertical position for both
-  const gap = 80; // horizontal gap between them
-  const centerX = 730;
+  // Match hitbox centers (x: 75, y: 245) and (x: 265, y: 248)
+  const meetingX = 75 - W / 2;   // 15
+  const meetingY = 245 - H / 2;  // 185
+  const financeX = 265 - W / 2;  // 205
+  const financeY = 248 - H / 2;  // 188
 
-  // Left thumbnail x, Right thumbnail x
-  const leftX = centerX - W - gap / 2;
-  const rightX = centerX + gap / 2;
-
-  // --- Meeting Intelligence App (left) ---
+  // --- Meeting Intelligence App ---
   const mg = scene.add.graphics().setDepth(1);
-  mg.fillStyle(0xeef2fb); mg.fillRect(leftX, y, W, H);
-  mg.lineStyle(1, 0x99aac4); mg.strokeRect(leftX, y, W, H);
+  mg.fillStyle(0xeef2fb); mg.fillRect(meetingX, meetingY, W, H);
+  mg.lineStyle(1, 0x99aac4); mg.strokeRect(meetingX, meetingY, W, H);
   mg.lineStyle(1, 0xbbc8de);
-  for (let i = 0; i < 5; i++) mg.lineBetween(leftX + 10, y + 30 + i * 13, leftX + W - 10, y + 30 + i * 13);
-  mg.fillStyle(0xff3333); mg.fillCircle(leftX + W - 12, y + 10, 6);
+  for (let i = 0; i < 5; i++) mg.lineBetween(meetingX + 10, meetingY + 30 + i * 13, meetingX + W - 10, meetingY + 30 + i * 13);
+  mg.fillStyle(0xff3333); mg.fillCircle(meetingX + W - 12, meetingY + 10, 6);
   scene.interactiveObjects.push(mg);
 
-  const mcx = leftX + W / 2;
+  const mcx = meetingX + W / 2;
   [
-    scene.add.text(mcx, y + 5,      'MEETING #9,847',      { fontSize: '8px',  color: '#334466', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-    scene.add.text(mcx, y + H - 32, 'z  z  z',             { fontSize: '13px', color: '#7788aa', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-    scene.add.text(mcx, y + H - 16, "could've been\nan email", { fontSize: '7px', color: '#556688', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(mcx, meetingY + 5,      'MEETING #9,847',      { fontSize: '8px',  color: '#334466', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(mcx, meetingY + H - 32, 'z  z  z',             { fontSize: '13px', color: '#7788aa', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(mcx, meetingY + H - 16, "could've been\nan email", { fontSize: '7px', color: '#556688', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
   ].forEach(o => scene.interactiveObjects.push(o));
 
-  // --- Financial Portfolio Analytics (right) ---
+  // --- Financial Portfolio Analytics ---
   const fg = scene.add.graphics().setDepth(1);
-  fg.fillStyle(0x050f05); fg.fillRect(rightX, y, W, H);
+  fg.fillStyle(0x050f05); fg.fillRect(financeX, financeY, W, H);
   fg.lineStyle(1, 0x0d2a0d);
-  for (let i = 1; i < 4; i++) fg.lineBetween(rightX, y + (H / 4) * i, rightX + W, y + (H / 4) * i);
-  for (let i = 1; i < 4; i++) fg.lineBetween(rightX + (W / 4) * i, y, rightX + (W / 4) * i, y + H);
+  for (let i = 1; i < 4; i++) fg.lineBetween(financeX, financeY + (H / 4) * i, financeX + W, financeY + (H / 4) * i);
+  for (let i = 1; i < 4; i++) fg.lineBetween(financeX + (W / 4) * i, financeY, financeX + (W / 4) * i, financeY + H);
   const pts = [
-    [rightX + 8,     y + H - 18],
-    [rightX + 22,    y + H - 38],
-    [rightX + 35,    y + H - 30],
-    [rightX + 48,    y + H - 55],
-    [rightX + 58,    y + H - 48],
-    [rightX + 70,    y + H - 72],
-    [rightX + 82,    y + H - 65],
-    [rightX + W - 6, y + 14],
+    [financeX + 8,     financeY + H - 18],
+    [financeX + 22,    financeY + H - 38],
+    [financeX + 35,    financeY + H - 30],
+    [financeX + 48,    financeY + H - 55],
+    [financeX + 58,    financeY + H - 48],
+    [financeX + 70,    financeY + H - 72],
+    [financeX + 82,    financeY + H - 65],
+    [financeX + W - 6, financeY + 14],
   ];
   fg.lineStyle(2, 0x00e844);
   for (let i = 0; i < pts.length - 1; i++) fg.lineBetween(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1]);
   fg.fillStyle(0x00e844); fg.fillCircle(pts[pts.length - 1][0], pts[pts.length - 1][1], 3);
   scene.interactiveObjects.push(fg);
 
-  const fcx = rightX + W / 2;
+  const fcx = financeX + W / 2;
   [
-    scene.add.text(fcx, y + 5,      'STONKS',       { fontSize: '12px', color: '#00e844', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-    scene.add.text(fcx, y + H - 14, 'NUMBER GO UP', { fontSize: '7px',  color: '#44cc66', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(fcx, financeY + 5,      'STONKS',       { fontSize: '12px', color: '#00e844', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(fcx, financeY + H - 14, 'NUMBER GO UP', { fontSize: '7px',  color: '#44cc66', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
   ].forEach(o => scene.interactiveObjects.push(o));
 }
