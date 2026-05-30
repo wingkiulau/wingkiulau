@@ -1,7 +1,7 @@
 export function createWizardInterface(scene) {
   // Speech bubble on entry
   const bubble = scene.add.graphics();
-  const text = scene.add.text(600, 140, 'Hmm, that glowing magical orb sure looks like it’s hiding some secrets… curious to click on it?', {
+  const text = scene.add.text(600, 140, "Hmm, that glowing magical orb sure looks like it’s hiding some secrets... curious to click on it?", {
     fontFamily: 'serif',
     fontSize: '20px',
     color: '#000',
