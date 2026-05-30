@@ -108,37 +108,32 @@ function showPagePopup(scene, title, entries) {
   
   scene.currentPopupElements.push(titleText);
   
-  // Calculate total height needed
   let currentY = centerY - 150;
-  const lineHeight = 25;
-  const entrySpacing = 25;
-  
+  const entrySpacing = 18;
+
   // Create text objects for each entry
-  entries.forEach((entry, index) => {
-    // Bold date text
+  entries.forEach((entry) => {
+    // Bold date text — top-anchored so currentY is always the top edge
     const dateText = scene.add.text(centerX, currentY, entry.date, {
       fontSize: '16px',
-      color: '#000066', // Dark blue for dates
+      color: '#000066',
       fontStyle: 'bold',
       align: 'center'
-    }).setOrigin(0.5).setDepth(11);
-    
+    }).setOrigin(0.5, 0).setDepth(11);
+
     scene.currentPopupElements.push(dateText);
-    currentY += lineHeight;
-    
-    // Regular description text
+    currentY += dateText.getBounds().height + 6;
+
+    // Description text — also top-anchored
     const descText = scene.add.text(centerX, currentY, entry.description, {
       fontSize: '14px',
       color: '#000000',
       align: 'center',
       wordWrap: { width: 350 }
-    }).setOrigin(0.5).setDepth(11);
-    
+    }).setOrigin(0.5, 0).setDepth(11);
+
     scene.currentPopupElements.push(descText);
-    
-    // Move to next entry position
-    const descHeight = descText.getBounds().height;
-    currentY += descHeight + entrySpacing;
+    currentY += descText.getBounds().height + entrySpacing;
   });
   
   // Calculate total bounds for background box
