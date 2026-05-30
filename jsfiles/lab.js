@@ -3,7 +3,7 @@ export function createLabInterface(scene, backgroundSprite) {
   const labZones = [
     {
       name: 'Meeting Intelligence App',
-      x: 540,
+      x: 75,
       y: 245,
       width: 120,
       height: 120,
@@ -23,7 +23,7 @@ export function createLabInterface(scene, backgroundSprite) {
     },
     {
       name: 'Financial Portfolio Analytics Dashboard',
-      x: 730,
+      x: 265,
       y: 248,
       width: 120,
       height: 120,
@@ -50,6 +50,36 @@ export function createLabInterface(scene, backgroundSprite) {
       rotation: 0,
       description: 'Full-stack portfolio with AI chatbot, retrieval pipeline, and custom knowledge base. Built with FastAPI, LangChain, OpenAI API, and deployed on GitHub Pages. (You\'re exploring it right now!)',
       url: 'https://wingkiulau.github.io'
+    },
+    {
+      name: 'Only Go Frogward',
+      x: 540,
+      y: 245,
+      width: 120,
+      height: 120,
+      rotation: 0,
+      description: '2D platformer built with C# and Unity. Guide the frog — but only forward!',
+      url: 'https://3rooks.itch.io'
+    },
+    {
+      name: 'Checkmaze',
+      x: 730,
+      y: 248,
+      width: 120,
+      height: 120,
+      rotation: 0,
+      description: '3D logic puzzle game built with C# and Unity. Navigate the maze using chess-piece movement rules.',
+      url: 'https://3rooks.itch.io/checkmaze'
+    },
+    {
+      name: 'Claw & Order',
+      x: 620,
+      y: 60,
+      width: 130,
+      height: 90,
+      rotation: 0,
+      description: '48-hour game jam entry. Multiplayer claw machine mayhem built with C# and Unity.',
+      url: 'https://3rooks.itch.io'
     }
   ];
 
@@ -158,10 +188,10 @@ function drawLabThumbnails(scene) {
   const W = 120;
   const H = 120;
 
-  // Right side, same y as hitboxes, same 190px center-to-center gap
-  const meetingX = 540 - W / 2;  // 480
+  // Aligned with meeting (x=75) and financial (x=265) hitbox centers
+  const meetingX = 75 - W / 2;   // 15
   const meetingY = 245 - H / 2;  // 185
-  const financeX = 730 - W / 2;  // 670
+  const financeX = 265 - W / 2;  // 205
   const financeY = 248 - H / 2;  // 188
 
   // --- Meeting Intelligence App ---
@@ -173,7 +203,7 @@ function drawLabThumbnails(scene) {
   mg.fillStyle(0xff3333); mg.fillCircle(meetingX + W - 12, meetingY + 10, 6);
   scene.interactiveObjects.push(mg);
 
-  const mcx = 540;
+  const mcx = 75;
   [
     scene.add.text(mcx, meetingY + 5,      'MEETING #9,847',      { fontSize: '8px',  color: '#334466', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
     scene.add.text(mcx, meetingY + H - 32, 'z  z  z',             { fontSize: '13px', color: '#7788aa', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
@@ -201,7 +231,7 @@ function drawLabThumbnails(scene) {
   fg.fillStyle(0x00e844); fg.fillCircle(pts[pts.length - 1][0], pts[pts.length - 1][1], 3);
   scene.interactiveObjects.push(fg);
 
-  const fcx = 730;
+  const fcx = 265;
   [
     scene.add.text(fcx, financeY + 5,      'STONKS',       { fontSize: '12px', color: '#00e844', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
     scene.add.text(fcx, financeY + H - 14, 'NUMBER GO UP', { fontSize: '7px',  color: '#44cc66', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
