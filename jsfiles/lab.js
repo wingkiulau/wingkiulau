@@ -3,7 +3,7 @@ export function createLabInterface(scene, backgroundSprite) {
   const labZones = [
     {
       name: 'Meeting Intelligence App',
-      x: 75,
+      x: 540,
       y: 245,
       width: 120,
       height: 120,
@@ -23,7 +23,7 @@ export function createLabInterface(scene, backgroundSprite) {
     },
     {
       name: 'Financial Portfolio Analytics Dashboard',
-      x: 265,
+      x: 730,
       y: 248,
       width: 120,
       height: 120,
