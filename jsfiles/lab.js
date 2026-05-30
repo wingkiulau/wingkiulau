@@ -53,7 +53,7 @@ export function createLabInterface(scene, backgroundSprite) {
     }
   ];
 
-  drawLabThumbnails(scene, labZones);
+  drawLabThumbnails(scene);
 
   labZones.forEach((zone) => {
     const hitArea = scene.add.rectangle(zone.x, zone.y, zone.width, zone.height);
@@ -154,63 +154,55 @@ function destroyExistingPopup(scene) {
   }
 }
 
-function drawLabThumbnails(scene, labZones) {
-  // --- Meeting Intelligence App (zone 0) ---
-  const mz = labZones[0];
-  const mx = mz.x - mz.width / 2;
-  const my = mz.y - mz.height / 2;
+function drawLabThumbnails(scene) {
+  const W = 120;
+  const H = 120;
 
+  // Right-side column: stacked with a gap between them
+  const cx = 580;
+  const meetingTopY = 110;
+  const financeTopY  = 360;
+
+  // --- Meeting Intelligence App ---
+  const mx = cx - W / 2;
   const mg = scene.add.graphics().setDepth(1);
-  mg.fillStyle(0xeef2fb); mg.fillRect(mx, my, mz.width, mz.height);
-  mg.lineStyle(1, 0x99aac4); mg.strokeRect(mx, my, mz.width, mz.height);
-  // "Agenda" lines
+  mg.fillStyle(0xeef2fb); mg.fillRect(mx, meetingTopY, W, H);
+  mg.lineStyle(1, 0x99aac4); mg.strokeRect(mx, meetingTopY, W, H);
   mg.lineStyle(1, 0xbbc8de);
-  for (let i = 0; i < 5; i++) mg.lineBetween(mx + 10, my + 30 + i * 13, mx + mz.width - 10, my + 30 + i * 13);
-  // Red urgent dot
-  mg.fillStyle(0xff3333); mg.fillCircle(mx + mz.width - 12, my + 10, 6);
-  // Sleepy Zs
-  mg.fillStyle(0x99aac4);
+  for (let i = 0; i < 5; i++) mg.lineBetween(mx + 10, meetingTopY + 30 + i * 13, mx + W - 10, meetingTopY + 30 + i * 13);
+  mg.fillStyle(0xff3333); mg.fillCircle(mx + W - 12, meetingTopY + 10, 6);
   scene.interactiveObjects.push(mg);
 
-  const objs = [
-    scene.add.text(mz.x, my + 5, 'MEETING #9,847', { fontSize: '8px', color: '#334466', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-    scene.add.text(mz.x, my + mz.height - 32, 'z z z', { fontSize: '13px', color: '#7788aa', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-    scene.add.text(mz.x, my + mz.height - 16, "could've been\nan email", { fontSize: '7px', color: '#556688', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-  ];
-  objs.forEach(o => scene.interactiveObjects.push(o));
+  [
+    scene.add.text(cx, meetingTopY + 5,      'MEETING #9,847',      { fontSize: '8px',  color: '#334466', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(cx, meetingTopY + H - 32, 'z  z  z',             { fontSize: '13px', color: '#7788aa', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(cx, meetingTopY + H - 16, "could've been\nan email", { fontSize: '7px', color: '#556688', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+  ].forEach(o => scene.interactiveObjects.push(o));
 
-  // --- Financial Portfolio Analytics (zone 2) ---
-  const fz = labZones[2];
-  const fx = fz.x - fz.width / 2;
-  const fy = fz.y - fz.height / 2;
-
+  // --- Financial Portfolio Analytics ---
+  const fx = cx - W / 2;
   const fg = scene.add.graphics().setDepth(1);
-  // Bloomberg terminal dark bg
-  fg.fillStyle(0x050f05); fg.fillRect(fx, fy, fz.width, fz.height);
-  // Grid
+  fg.fillStyle(0x050f05); fg.fillRect(fx, financeTopY, W, H);
   fg.lineStyle(1, 0x0d2a0d);
-  for (let i = 1; i < 4; i++) fg.lineBetween(fx, fy + (fz.height / 4) * i, fx + fz.width, fy + (fz.height / 4) * i);
-  for (let i = 1; i < 4; i++) fg.lineBetween(fx + (fz.width / 4) * i, fy, fx + (fz.width / 4) * i, fy + fz.height);
-  // Stonks line (going up with a comedic dip then recovery)
+  for (let i = 1; i < 4; i++) fg.lineBetween(fx, financeTopY + (H / 4) * i, fx + W, financeTopY + (H / 4) * i);
+  for (let i = 1; i < 4; i++) fg.lineBetween(fx + (W / 4) * i, financeTopY, fx + (W / 4) * i, financeTopY + H);
   const pts = [
-    [fx + 8,  fy + fz.height - 18],
-    [fx + 22, fy + fz.height - 38],
-    [fx + 35, fy + fz.height - 30],
-    [fx + 48, fy + fz.height - 55],
-    [fx + 58, fy + fz.height - 48],
-    [fx + 70, fy + fz.height - 72],
-    [fx + 82, fy + fz.height - 65],
-    [fx + fz.width - 6, fy + 14],
+    [fx + 8,   financeTopY + H - 18],
+    [fx + 22,  financeTopY + H - 38],
+    [fx + 35,  financeTopY + H - 30],
+    [fx + 48,  financeTopY + H - 55],
+    [fx + 58,  financeTopY + H - 48],
+    [fx + 70,  financeTopY + H - 72],
+    [fx + 82,  financeTopY + H - 65],
+    [fx + W - 6, financeTopY + 14],
   ];
   fg.lineStyle(2, 0x00e844);
-  for (let i = 0; i < pts.length - 1; i++) fg.lineBetween(pts[i][0], pts[i][1], pts[i+1][0], pts[i+1][1]);
-  // Endpoint dot
+  for (let i = 0; i < pts.length - 1; i++) fg.lineBetween(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1]);
   fg.fillStyle(0x00e844); fg.fillCircle(pts[pts.length - 1][0], pts[pts.length - 1][1], 3);
   scene.interactiveObjects.push(fg);
 
-  const fobjs = [
-    scene.add.text(fz.x, fy + 5, 'STONKS', { fontSize: '12px', color: '#00e844', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-    scene.add.text(fz.x, fy + fz.height - 14, 'NUMBER GO UP', { fontSize: '7px', color: '#44cc66', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
-  ];
-  fobjs.forEach(o => scene.interactiveObjects.push(o));
+  [
+    scene.add.text(cx, financeTopY + 5,      'STONKS',       { fontSize: '12px', color: '#00e844', fontStyle: 'bold', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+    scene.add.text(cx, financeTopY + H - 14, 'NUMBER GO UP', { fontSize: '7px',  color: '#44cc66', align: 'center' }).setOrigin(0.5, 0).setDepth(2),
+  ].forEach(o => scene.interactiveObjects.push(o));
 }

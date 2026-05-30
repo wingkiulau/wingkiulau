@@ -122,7 +122,7 @@ function showPagePopup(scene, title, entries) {
     }).setOrigin(0.5, 0).setDepth(11);
 
     scene.currentPopupElements.push(dateText);
-    currentY += dateText.getBounds().height + 6;
+    currentY += dateText.getBounds().height + 14;
 
     // Description text — also top-anchored
     const descText = scene.add.text(centerX, currentY, entry.description, {
