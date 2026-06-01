@@ -239,28 +239,32 @@ function initializePortfolioChat() {
     window.sendMessage = async function() {
         const message = chatInput.value.trim();
         if (!message) return;
-        
+
+        const sendButton = document.getElementById('chatSendButton');
+        if (sendButton && sendButton.disabled) return;
+
         console.log(`Sending message: ${message}`);
-        
-        // Add user message
+
         addMessage(message, true);
         chatInput.value = '';
-        
-        // Show typing indicator
+        if (sendButton) sendButton.disabled = true;
+
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'message bot typing';
         typingIndicator.innerHTML = '<strong>WKbot:</strong> <span class="typing-dots">...</span>';
         wkbotChat.appendChild(typingIndicator);
-        
+
         try {
             const response = await getAIResponse(message);
-            // Remove typing indicator
             wkbotChat.removeChild(typingIndicator);
             addMessage(response, false);
         } catch (error) {
             console.error('Chat error:', error);
             wkbotChat.removeChild(typingIndicator);
             addMessage('Sorry, I encountered an error. Please try again.', false);
+        } finally {
+            if (sendButton) sendButton.disabled = false;
+            chatInput.focus();
         }
     };
 
