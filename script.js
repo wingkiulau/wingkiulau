@@ -604,8 +604,63 @@ function initializeSpotify() {
         });
     }
 
+    makeDraggable(widget);
+
     fetchNowPlaying();
     setInterval(fetchNowPlaying, 30000);
+}
+
+function makeDraggable(el) {
+    const handle = el.querySelector('.spotify-top') || el;
+    let startX, startY, startLeft, startTop;
+
+    function onStart(e) {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        e.preventDefault();
+
+        const rect = el.getBoundingClientRect();
+        // switch from bottom/left to top/left so dragging works cleanly
+        el.style.bottom = 'auto';
+        el.style.right  = 'auto';
+        el.style.left   = rect.left + 'px';
+        el.style.top    = rect.top  + 'px';
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        startX    = clientX;
+        startY    = clientY;
+        startLeft = rect.left;
+        startTop  = rect.top;
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup',   onEnd);
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend',  onEnd);
+        handle.style.cursor = 'grabbing';
+    }
+
+    function onMove(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+        const maxX = window.innerWidth  - el.offsetWidth;
+        const maxY = window.innerHeight - el.offsetHeight;
+        el.style.left = Math.min(Math.max(0, startLeft + dx), maxX) + 'px';
+        el.style.top  = Math.min(Math.max(0, startTop  + dy), maxY) + 'px';
+    }
+
+    function onEnd() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup',   onEnd);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend',  onEnd);
+        handle.style.cursor = 'grab';
+    }
+
+    handle.style.cursor = 'grab';
+    handle.addEventListener('mousedown', onStart);
+    handle.addEventListener('touchstart', onStart, { passive: false });
 }
 
 async function fetchNowPlaying() {
