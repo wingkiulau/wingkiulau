@@ -25,7 +25,7 @@ export function createLibraryBooks(scene) {
 
 function showBookCategory(scene, category) {
   const categoryInfo = {
-    '🗣️ Lexicon': 'English (Native), Mandarin (Advanced), Cantonese (Fluent)',
+    '🗣️ Lexicon': 'English (Native), Mandarin (Intermediate), Cantonese (Advanced)',
     '💻 Codecraft': 'Python (NumPy, Pandas, scikit-learn), Java, TypeScript/JavaScript, C, C#, SQL, HTML/CSS',
     'TechTome':
       '🔧 Backend & Infrastructure:\n' +

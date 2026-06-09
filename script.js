@@ -435,6 +435,7 @@ function showLoadingSequence(username) {
             setTimeout(() => {
                 portfolioContent.classList.add('show');
                 animatePortfolioSections();
+                initializeSpotify();
             }, 200);
         });
     }, 300);
@@ -544,3 +545,73 @@ window.addEventListener('beforeunload', () => {
 window.stopPortfolioEffects = stopPortfolioEffects;
 
 console.log('Script loaded successfully');
+
+// ── Spotify Now Playing ──────────────────────────────────────────────────────
+// Requires a GET /now-playing endpoint on wkbot.onrender.com returning:
+// { is_playing, track_name, artist_name, album_art_url, spotify_url }
+
+function initializeSpotify() {
+    const widget = document.getElementById('spotify-widget');
+    if (!widget) return;
+    widget.style.display = 'block';
+
+    const toggleBtn = document.getElementById('spotifyToggle');
+    const expanded  = document.getElementById('spotifyExpanded');
+    let minimized   = false;
+
+    if (toggleBtn && expanded) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            minimized = !minimized;
+            expanded.style.display = minimized ? 'none' : 'flex';
+            toggleBtn.textContent  = minimized ? '+' : '−';
+        });
+    }
+
+    fetchNowPlaying();
+    setInterval(fetchNowPlaying, 30000);
+}
+
+async function fetchNowPlaying() {
+    try {
+        const res = await fetch('https://wkbot.onrender.com/now-playing');
+        if (!res.ok) throw new Error('not ok');
+        updateSpotifyWidget(await res.json());
+    } catch {
+        updateSpotifyWidget(null);
+    }
+}
+
+function updateSpotifyWidget(data) {
+    const widget   = document.getElementById('spotify-widget');
+    const trackEl  = document.getElementById('spotifyTrack');
+    const artistEl = document.getElementById('spotifyArtist');
+    const artEl    = document.getElementById('spotifyAlbumArt');
+    const labelEl  = document.getElementById('spotifyLabel');
+    const eqEl     = document.getElementById('eqBars');
+    const linkEl   = document.getElementById('spotifyTrackLink');
+    if (!widget) return;
+
+    if (!data || !data.track_name) {
+        widget.classList.add('spotify-offline');
+        if (trackEl)  trackEl.textContent  = 'Nothing playing';
+        if (artistEl) artistEl.textContent = '—';
+        if (artEl)    artEl.style.display  = 'none';
+        if (labelEl)  labelEl.textContent  = 'SPOTIFY';
+        if (eqEl)     eqEl.style.display   = 'none';
+        return;
+    }
+
+    widget.classList.remove('spotify-offline');
+    if (trackEl)  trackEl.textContent  = data.track_name;
+    if (artistEl) artistEl.textContent = data.artist_name || '—';
+    if (labelEl)  labelEl.textContent  = data.is_playing ? 'NOW PLAYING' : 'LAST PLAYED';
+    if (eqEl)     eqEl.style.display   = data.is_playing ? 'flex' : 'none';
+
+    if (artEl && data.album_art_url) {
+        artEl.src          = data.album_art_url;
+        artEl.style.display = 'block';
+    }
+
+    if (linkEl) linkEl.href = data.spotify_url || '#';
+}

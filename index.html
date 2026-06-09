@@ -82,6 +82,8 @@
             <div class="section-tabs">
                 <div class="tab active" onclick="switchTab(event, 'skills')">Skills</div>
                 <div class="tab" onclick="switchTab(event, 'projects')">Projects</div>
+                <div class="tab" onclick="switchTab(event, 'blog')">Blog</div>
+                <div class="tab" onclick="switchTab(event, 'reads')">My Reads</div>
             </div>
             
             <!-- Skills Tab -->
@@ -105,7 +107,7 @@
                     </div>
                     <div class="skill-card">
                         <h3>Languages</h3>
-                        <p>English (Native), Mandarin (Advanced), Cantonese (Fluent)</p>
+                        <p>English (Native), Mandarin (Intermediate), Cantonese (Advanced)</p>
                     </div>
                 </div>
             </div>
@@ -143,6 +145,97 @@
                         <h3>Unity Games</h3>
                         <p>Several games built with C# and Unity: Checkmaze (3D logic puzzle), Only Go Frogward (2D platformer), and Claw & Order (48-hour game jam multiplayer claw machine).</p>
                         <a href="https://3rooks.itch.io/checkmaze" class="project-link btn btn-2" target="_blank" rel="noopener noreferrer">Play Checkmaze</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Tab -->
+            <div class="tab-content" id="blog">
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <div class="blog-meta">
+                            <span class="blog-date">May 2024</span>
+                            <span class="blog-platform">Medium</span>
+                        </div>
+                        <h3>Understanding Bird Populations Through Denmark's Emissions</h3>
+                        <p>A data science exploration using Random Forest modeling on 47k+ ecological records, analyzing the relationship between industrial emissions and bird population trends in Denmark.</p>
+                        <a href="https://medium.com/@zoeexelbert/understanding-bird-populations-through-denmarks-emissions-8014fd834d8f" class="project-link btn btn-2" target="_blank" rel="noopener noreferrer">Read →</a>
+                    </div>
+                    <div class="blog-card blog-coming-soon">
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                        </div>
+                        <h3>More posts on the way...</h3>
+                        <p>Writing on AI systems, full-stack development, and the intersection of technology and the humanities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Reads Tab -->
+            <div class="tab-content" id="reads">
+                <div class="reads-container">
+                    <div class="reads-category">
+                        <div class="reads-category-header">// Tech &amp; AI</div>
+                        <div class="book-list">
+                            <div class="book-card">
+                                <div class="book-header">
+                                    <span class="book-title">Designing Machine Learning Systems</span>
+                                    <span class="book-status status-read">Read</span>
+                                </div>
+                                <div class="book-author">Chip Huyen</div>
+                                <div class="book-note">Practical ML systems thinking — directly shaped how I approach data pipelines and feature engineering.</div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-header">
+                                    <span class="book-title">The Alignment Problem</span>
+                                    <span class="book-status status-read">Read</span>
+                                </div>
+                                <div class="book-author">Brian Christian</div>
+                                <div class="book-note">Essential reading for anyone building AI systems. Changed how I think about value alignment in real-world models.</div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-header">
+                                    <span class="book-title">Weapons of Math Destruction</span>
+                                    <span class="book-status status-read">Read</span>
+                                </div>
+                                <div class="book-author">Cathy O'Neil</div>
+                                <div class="book-note">A sobering look at how algorithms encode and amplify bias. Required reading alongside any ML project.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reads-category">
+                        <div class="reads-category-header">// History &amp; Culture</div>
+                        <div class="book-list">
+                            <div class="book-card">
+                                <div class="book-header">
+                                    <span class="book-title">Guns, Germs, and Steel</span>
+                                    <span class="book-status status-read">Read</span>
+                                </div>
+                                <div class="book-author">Jared Diamond</div>
+                                <div class="book-note">Reframed how I think about the macro forces behind historical change — geography as destiny.</div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-header">
+                                    <span class="book-title">The Analects</span>
+                                    <span class="book-status status-read">Read</span>
+                                </div>
+                                <div class="book-author">Confucius (trans. Slingerland)</div>
+                                <div class="book-note">Core text for Asian Studies — the translation's commentary made ancient ideas surprisingly accessible and applicable.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reads-category">
+                        <div class="reads-category-header">// Currently Reading</div>
+                        <div class="book-list">
+                            <div class="book-card">
+                                <div class="book-header">
+                                    <span class="book-title">Thinking, Fast and Slow</span>
+                                    <span class="book-status status-reading">Reading</span>
+                                </div>
+                                <div class="book-author">Daniel Kahneman</div>
+                                <div class="book-note">Dense but rewarding — every chapter reframes how I think about decision-making and cognitive bias.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -204,6 +297,34 @@
             </div>
         </div>
     </div>
+    <!-- Spotify Now Playing Widget -->
+    <div id="spotify-widget" class="spotify-widget">
+        <div class="spotify-top">
+            <div class="spotify-brand">
+                <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                </svg>
+                <span id="spotifyLabel" class="spotify-label-text">SPOTIFY</span>
+            </div>
+            <button class="spotify-toggle-btn" id="spotifyToggle" title="Toggle">−</button>
+        </div>
+        <div id="spotifyExpanded" class="spotify-expanded">
+            <img id="spotifyAlbumArt" class="spotify-album-art" src="" alt="Album Art">
+            <div class="spotify-info">
+                <a id="spotifyTrackLink" href="#" target="_blank" rel="noopener noreferrer" class="spotify-track-link">
+                    <div id="spotifyTrack" class="spotify-track-name">—</div>
+                    <div id="spotifyArtist" class="spotify-artist-name">—</div>
+                </a>
+                <div id="eqBars" class="eq-bars" style="display:none">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body> 
 </html>
