@@ -436,6 +436,7 @@ function showLoadingSequence(username) {
                 portfolioContent.classList.add('show');
                 animatePortfolioSections();
                 initializeSpotify();
+                fetchSubstackFeed();
             }, 200);
         });
     }, 300);
@@ -549,6 +550,41 @@ console.log('Script loaded successfully');
 // ── Spotify Now Playing ──────────────────────────────────────────────────────
 // Requires a GET /now-playing endpoint on wkbot.onrender.com returning:
 // { is_playing, track_name, artist_name, album_art_url, spotify_url }
+
+async function fetchSubstackFeed() {
+    const container = document.getElementById('blog-feed-container');
+    if (!container) return;
+
+    const RSS_URL = 'https://wingkiulau.substack.com/feed';
+    const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=10`;
+
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        if (data.status !== 'ok' || !data.items.length) {
+            container.innerHTML = '<div class="blog-card blog-coming-soon"><h3>No posts yet — check back soon.</h3></div>';
+            return;
+        }
+
+        container.innerHTML = data.items.map(item => {
+            const date = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            const excerpt = item.description.replace(/<[^>]+>/g, '').slice(0, 160).trim() + '…';
+            return `
+            <div class="blog-card">
+                <div class="blog-meta">
+                    <span class="blog-date">${date}</span>
+                    <span class="blog-platform">Substack</span>
+                </div>
+                <h3>${item.title}</h3>
+                <p>${excerpt}</p>
+                <a href="${item.link}" class="project-link btn btn-2" target="_blank" rel="noopener noreferrer">Read →</a>
+            </div>`;
+        }).join('') + `<div class="blog-see-more"><a href="https://substack.com/@wingkiulau" target="_blank" rel="noopener noreferrer">See all posts on Substack →</a></div>`;
+    } catch {
+        container.innerHTML = '<div class="blog-card blog-coming-soon"><h3>Could not load posts.</h3><p><a href="https://substack.com/@wingkiulau" target="_blank">Visit Substack →</a></p></div>';
+    }
+}
 
 function initializeSpotify() {
     const widget = document.getElementById('spotify-widget');

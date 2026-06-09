@@ -1225,6 +1225,33 @@ p {
     border-style: dashed;
 }
 
+.blog-loading {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    opacity: 0.7;
+    padding: 12px 0;
+}
+
+.blog-see-more {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 12px 0 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.blog-see-more a {
+    color: var(--accent);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.blog-see-more a:hover {
+    opacity: 1;
+}
+
 .blog-meta {
     display: flex;
     gap: 10px;
@@ -1341,7 +1368,7 @@ p {
 .spotify-widget {
     position: fixed;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
     z-index: 500;
     width: 260px;
     background: rgba(8, 8, 8, 0.96);
