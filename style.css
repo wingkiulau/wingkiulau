@@ -1510,14 +1510,7 @@ p {
 /* Spotify mobile */
 @media (max-width: 768px) {
     .spotify-widget {
-        bottom: 16px;
-        left: auto;
-        right: 16px;
-        width: 220px;
-    }
-
-    .spotify-top {
-        cursor: default !important;
+        display: none;
     }
 }
 
