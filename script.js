@@ -595,6 +595,14 @@ function initializeSpotify() {
     const expanded  = document.getElementById('spotifyExpanded');
     let minimized   = false;
 
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+        minimized = true;
+        expanded.style.display = 'none';
+        toggleBtn.textContent  = '+';
+    }
+
     if (toggleBtn && expanded) {
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -604,7 +612,7 @@ function initializeSpotify() {
         });
     }
 
-    makeDraggable(widget);
+    if (!isMobile) makeDraggable(widget);
 
     fetchNowPlaying();
     setInterval(fetchNowPlaying, 30000);
