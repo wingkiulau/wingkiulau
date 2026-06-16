@@ -589,19 +589,14 @@ async function fetchSubstackFeed() {
 function initializeSpotify() {
     const widget = document.getElementById('spotify-widget');
     if (!widget) return;
+
+    if (window.innerWidth <= 768) return;
+
     widget.style.display = 'block';
 
     const toggleBtn = document.getElementById('spotifyToggle');
     const expanded  = document.getElementById('spotifyExpanded');
     let minimized   = false;
-
-    const isMobile = window.innerWidth <= 768;
-
-    if (isMobile) {
-        minimized = true;
-        expanded.style.display = 'none';
-        toggleBtn.textContent  = '+';
-    }
 
     if (toggleBtn && expanded) {
         toggleBtn.addEventListener('click', (e) => {
@@ -612,7 +607,7 @@ function initializeSpotify() {
         });
     }
 
-    if (!isMobile) makeDraggable(widget);
+    makeDraggable(widget);
 
     fetchNowPlaying();
     setInterval(fetchNowPlaying, 30000);
